@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA News - O dilema ético da IA: Inovação ou Invasão?</title>
+    <style>
+        /* Reset e configurações gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        :root {
+            --primary-blue: #007AFF;
+            --primary-red: #FF3B30;
+            --primary-purple: #5856D6;
+            --white: #FFFFFF;
+            --light-gray: #F2F2F7;
+            --dark-gray: #8E8E93;
+            --text-dark: #1D1D1F;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .logo-text span {
+            color: var(--primary-blue);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-blue);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Conteúdo principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: white;
+            padding: 60px 40px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--primary-blue);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Seções */
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary-blue);
+            display: inline-block;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .article-card {
+            background-color: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .article-image {
+            height: 180px;
+            background-color: var(--dark-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .article-content {
+            padding: 20px;
+        }
+
+        .article-tag {
+            display: inline-block;
+            background-color: var(--primary-red);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .article-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .article-excerpt {
+            color: var(--dark-gray);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--dark-gray);
+        }
+
+        /* Podcast e Jornal */
+        .media-section {
+            margin-bottom: 50px;
+        }
+
+        .media-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .media-card {
+            background-color: var(--white);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .media-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .media-title i {
+            color: var(--primary-red);
+        }
+
+        .media-placeholder {
+            background-color: var(--light-gray);
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            color: var(--dark-gray);
+            font-weight: 500;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background-color: var(--white);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 50px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .newsletter h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .newsletter p {
+            color: var(--dark-gray);
+            margin-bottom: 25px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            border-radius: 30px 0 0 30px;
+            font-size: 16px;
+        }
+
+        .newsletter-button {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 0 30px 30px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .newsletter-button:hover {
+            background-color: var(--primary-purple);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--white);
+            padding: 50px 0 20px;
+            margin-top: 50px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary-blue);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dark);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: var(--dark-gray);
+            font-size: 14px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 15px;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero {
+                padding: 40px 20px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .media-container {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-input {
+                border-radius: 30px;
+                margin-bottom: 10px;
+            }
+
+            .newsletter-button {
+                border-radius: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-icon">IA</div>
+                <div class="logo-text">IA<span>News</span></div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#">Notícias</a></li>
+                    <li><a href="#">Análises</a></li>
+                    <li><a href="#">Podcast</a></li>
+                    <li><a href="#">Sobre</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">☰</div>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>O dilema ético da IA: Inovação ou Invasão?</h1>
+            <p>Explore as fronteiras da inteligência artificial e os desafios éticos que moldam nosso futuro tecnológico.</p>
+            <a href="#" class="cta-button">Leia a Análise Completa</a>
+        </section>
+
+        <!-- Últimas Notícias -->
+        <section>
+            <h2 class="section-title">Últimas Notícias</h2>
+            <div class="articles-grid">
+                <article class="article-card">
+                    <div class="article-image" style="background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));">
+                        IA E PRIVACIDADE
+                    </div>
+                    <div class="article-content">
+                        <span class="article-tag">Ética</span>
+                        <h3 class="article-title">Novo algoritmo de reconhecimento facial gera polêmica</h3>
+                        <p class="article-excerpt">Especialistas alertam para riscos de vigilância em massa com tecnologias de IA avançadas.</p>
+                        <div class="article-meta">
+                            <span>15 Mar 2023</span>
+                            <span>5 min leitura</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-image" style="background: linear-gradient(135deg, var(--primary-red), var(--primary-purple));">
+                        INOVAÇÃO
+                    </div>
+                    <div class="article-content">
+                        <span class="article-tag">Tecnologia</span>
+                        <h3 class="article-title">IA revoluciona diagnóstico médico com 95% de precisão</h3>
+                        <p class="article-excerpt">Sistema de deep learning supera especialistas humanos na detecção precoce de doenças.</p>
+                        <div class="article-meta">
+                            <span>12 Mar 2023</span>
+                            <span>4 min leitura</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-image" style="background: linear-gradient(135deg, var(--primary-purple), var(--primary-blue));">
+                        REGULAÇÃO
+                    </div>
+                    <div class="article-content">
+                        <span class="article-tag">Política</span>
+                        <h3 class="article-title">União Europeia aprova lei histórica para regulamentar IA</h3>
+                        <p class="article-excerpt">Novo marco regulatório estabelece limites para aplicações de alto risco da inteligência artificial.</p>
+                        <div class="article-meta">
+                            <span>10 Mar 2023</span>
+                            <span>6 min leitura</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Podcast e Jornal -->
+        <section class="media-section">
+            <h2 class="section-title">Mídia</h2>
+            <div class="media-container">
+                <div class="media-card">
+                    <h3 class="media-title">
+                        <span>Podcast IA News</span>
+                    </h3>
+                    <div class="media-placeholder">
+                        Área para incorporar podcast (YouTube/Spotify)
+                    </div>
+                </div>
+
+                <div class="media-card">
+                    <h3 class="media-title">
+                        <span>Jornal IA News</span>
+                    </h3>
+                    <div class="media-placeholder">
+                        Área para incorporar jornal (YouTube)
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter">
+            <h3>Fique por dentro das novidades</h3>
+            <p>Receba análises exclusivas e as últimas notícias sobre inteligência artificial diretamente no seu e-mail.</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Seu melhor e-mail" required>
+                <button type="submit" class="newsletter-button">Inscrever-se</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4>IA News</h4>
+                <p>Explorando o futuro da inteligência artificial e seus impactos na sociedade.</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">f</a>
+                    <a href="#" class="social-icon">t</a>
+                    <a href="#" class="social-icon">in</a>
+                    <a href="#" class="social-icon">yt</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Seções</h4>
+                <ul>
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#">Notícias</a></li>
+                    <li><a href="#">Análises</a></li>
+                    <li><a href="#">Podcast</a></li>
+                    <li><a href="#">Jornal</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Recursos</h4>
+                <ul>
+                    <li><a href="#">Glossário de IA</a></li>
+                    <li><a href="#">Linha do Tempo</a></li>
+                    <li><a href="#">Eventos</a></li>
+                    <li><a href="#">Biblioteca</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contato</h4>
+                <ul>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Anuncie</a></li>
+                    <li><a href="#">Trabalhe Conosco</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 IA News. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile simples
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const nav = document.querySelector('nav ul');
+            if (nav.style.display === 'flex') {
+                nav.style.display = 'none';
+            } else {
+                nav.style.display = 'flex';
+                nav.style.flexDirection = 'column';
+                nav.style.position = 'absolute';
+                nav.style.top = '70px';
+                nav.style.right = '0';
+                nav.style.background = 'white';
+                nav.style.padding = '20px';
+                nav.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+                nav.style.borderRadius = '0 0 0 16px';
+                nav.style.gap = '15px';
+            }
+        });
+    </script>
+</body>
+</html>
