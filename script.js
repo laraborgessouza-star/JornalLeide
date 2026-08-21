@@ -47,7 +47,7 @@ function initHeroCanvas() {
 
         // Feixes de Luz
         ctx.lineWidth = 2;
-        
+
         // Superior
         ctx.beginPath();
         ctx.moveTo(30, centerY - 60);
@@ -97,18 +97,20 @@ function initSimulador() {
     eyeLengthVal = document.getElementById('eyeLengthVal');
     simStatus = document.getElementById('simStatus');
 
-    lensPowerInput.addEventListener('input', updateSim);
-    eyeLengthInput.addEventListener('input', updateSim);
+    if (lensPowerInput) lensPowerInput.addEventListener('input', updateSim);
+    if (eyeLengthInput) eyeLengthInput.addEventListener('input', updateSim);
 
     updateSim();
 }
 
 function updateSim() {
-    const power = parseInt(lensPowerInput.value);
-    const length = parseInt(eyeLengthInput.value);
+    if (!lensPowerInput || !eyeLengthInput || !eyeCanvas) return;
 
-    lensPowerVal.textContent = `${power} D`;
-    eyeLengthVal.textContent = `${length} mm`;
+    const power = parseInt(lensPowerInput.value, 10);
+    const length = parseInt(eyeLengthInput.value, 10);
+
+    if (lensPowerVal) lensPowerVal.textContent = `${power} D`;
+    if (eyeLengthVal) eyeLengthVal.textContent = `${length} mm`;
 
     renderEyeSimulation(power, length);
 }
@@ -122,7 +124,7 @@ function renderEyeSimulation(power, length) {
 
     const eyeStartX = 150;
     // Mapeia comprimento visual no canvas (18mm a 30mm)
-    const eyeRadius = (length / 24) * 110; 
+    const eyeRadius = (length / 24) * 110;
     const retinaX = eyeStartX + (eyeRadius * 1.8);
 
     // Desenhar Estrutura Ocular
@@ -144,7 +146,7 @@ function renderEyeSimulation(power, length) {
     // Cristalino (Espessura varia com o 'Power')
     const lensThickness = (power / 20) * 10;
     const lensX = eyeStartX + 30;
-    
+
     ctxSim.beginPath();
     ctxSim.ellipse(lensX, centerY, lensThickness, 40, 0, 0, Math.PI * 2);
     ctxSim.fillStyle = 'rgba(200, 223, 244, 0.6)';
@@ -154,7 +156,6 @@ function renderEyeSimulation(power, length) {
     ctxSim.stroke();
 
     // Cálculo do Ponto Focal no Canvas
-    // Emetropia ideal ocorre quando o raio foca exatamente na Retina
     const idealFocalDist = retinaX - lensX;
     const focalShift = (20 - power) * 5 + (length - 24) * 2;
     const focalPointX = lensX + idealFocalDist - focalShift;
@@ -164,23 +165,25 @@ function renderEyeSimulation(power, length) {
     drawRay(30, centerY, lensX, centerY, focalPointX, centerY);
     drawRay(30, centerY + 35, lensX, centerY + 25, focalPointX, centerY);
 
-    // Ponto de Foco Luminous
+    // Ponto de Foco Luminoso
     ctxSim.beginPath();
     ctxSim.arc(focalPointX, centerY, 4, 0, Math.PI * 2);
     ctxSim.fillStyle = '#e8a030';
     ctxSim.fill();
 
     // Atualizar Mensagem do Estado
-    const diff = Math.abs(focalPointX - retinaX);
-    if (diff < 6) {
-        simStatus.textContent = "Foco ideal na retina (Emetropia)";
-        simStatus.className = "sim-status";
-    } else if (focalPointX < retinaX) {
-        simStatus.textContent = "Imagem focada ANTES da retina (Miopia)";
-        simStatus.className = "sim-status warn";
-    } else {
-        simStatus.textContent = "Imagem focada DEPOIS da retina (Hipermetropia)";
-        simStatus.className = "sim-status error";
+    if (simStatus) {
+        const diff = Math.abs(focalPointX - retinaX);
+        if (diff < 6) {
+            simStatus.textContent = "Foco ideal na retina (Emetropia)";
+            simStatus.className = "sim-status";
+        } else if (focalPointX < retinaX) {
+            simStatus.textContent = "Imagem focada ANTES da retina (Miopia)";
+            simStatus.className = "sim-status warn";
+        } else {
+            simStatus.textContent = "Imagem focada DEPOIS da retina (Hipermetropia)";
+            simStatus.className = "sim-status error";
+        }
     }
 }
 
@@ -195,7 +198,9 @@ function drawRay(x1, y1, x2, y2, x3, y3) {
 }
 
 /* ----- CONTROLES EXTERNOS E PRESETS ----- */
-function applyPreset(type) {
+window.applyPreset = function(type) {
+    if (!lensPowerInput || !eyeLengthInput) return;
+
     if (type === 'emetropia') {
         lensPowerInput.value = 20;
         eyeLengthInput.value = 24;
@@ -207,8 +212,8 @@ function applyPreset(type) {
         eyeLengthInput.value = 20;
     }
     updateSim();
-}
+};
 
-function resetSim() {
-    applyPreset('emetropia');
-}
+window.resetSim = function() {
+    window.applyPreset('emetropia');
+};
