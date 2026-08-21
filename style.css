@@ -1,4 +1,4 @@
-/* RESET & VARIÁVEIS */
+/* RESET & VARIAVEIS */
 * {
     margin: 0;
     padding: 0;
@@ -32,7 +32,7 @@ body {
     padding: 0 20px;
 }
 
-/* NAVEGAÇÃO */
+/* NAVEGACAO */
 .nav {
     display: flex;
     justify-content: space-between;
@@ -136,7 +136,13 @@ body {
     padding: 10px;
 }
 
-/* SEÇÕES */
+.hero-eye-wrap canvas {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* SECOES */
 .section {
     padding: 80px 0;
 }
@@ -244,7 +250,7 @@ body {
     margin-bottom: 5px;
 }
 
-/* FÍSICA */
+/* FISICA */
 .physics-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -283,6 +289,10 @@ body {
     font-size: 0.9rem;
 }
 
+.indices-table-wrap {
+    overflow-x: auto;
+}
+
 .indices-table {
     width: 100%;
     border-collapse: collapse;
@@ -319,6 +329,12 @@ body {
     overflow: hidden;
     display: flex;
     justify-content: center;
+}
+
+.canvas-wrap canvas {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 .sim-status {
@@ -404,7 +420,7 @@ body {
     color: var(--accent);
 }
 
-/* DEFICIÊNCIAS */
+/* DEFICIENCIAS */
 .def-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -529,5 +545,9 @@ body {
     .hero, .anatomy-grid, .physics-grid, .sim-layout {
         grid-template-columns: 1fr;
         flex-direction: column;
+    }
+    .nav {
+        flex-direction: column;
+        gap: 15px;
     }
 }
