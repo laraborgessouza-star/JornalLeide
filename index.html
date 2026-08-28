@@ -3,6 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sabor & Afeto | Receitas</title>
+
+    <!-- Fonte do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         CABEÇALHO
+    ========================== -->
+    <header class="topbar">
+
+        <a href="#" class="logo">
+            <span class="logo-icon">🍋</span>
+            <span>Sabor <strong>&</strong> Afeto</span>
+        </a>
+
+        <nav>
+            <a href="#receitas">Receitas</a>
+            <a href="#categorias">Categorias</a>
+            <a href="#sobre">Sobre</a>
+        </nav>
+
+        <button class="favorite-nav" id="favoritesBtn">
+            ♡ Favoritos
+            <span id="favoriteCount">0</span>
+        </button>
+
+    </header>
+
+
+    <main>
+
+        <!-- =========================
+             HERO
+        ========================== -->
+        <section class="hero">
+
+            <div class="hero-copy">
+
+                <span class="eyebrow">
+                    COZINHE • COMPARTILHE • APROVEITE
+                </span>
+
+                <h1>
+                    Receitas que têm
+                    <br>
+                    <em>gosto de carinho.</em>
+                </h1>
+
+                <p>
+                    Ideias simples e deliciosas para transformar
+                    qualquer refeição em um momento especial.
+                </p>
+
+                <div class="hero-actions">
+
+                    <a href="#receitas" class="btn btn-primary">
+                        Explorar receitas →
+                    </a>
+
+                    <button class="btn btn-light" id="randomBtn">
+                        ✨ Receita surpresa
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-art">
+
+                <div class="blob"></div>
+
+                <img<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Óptica do Olho Humano</title>
     
     <!-- Fontes Google -->
@@ -34,291 +120,418 @@
             
             <div class="hero-stats">
                 <div class="stat">
-                    <span class="stat-n">~60 D</span>
-                    <span class="stat-l">Convergência Total</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-n">1.337</span>
-                    <span class="stat-l">Índice do Humor Aquoso</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-n">120M</span>
-                    <span class="stat-l">Fotorreceptores</span>
-                </div>
-            </div>
-        </div>
+                    src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85"
+                    alt="Comida saudável"
+                >
 
-        <div class="hero-eye-wrap">
-            <canvas id="heroCanvas" width="500" height="400"></canvas>
-        </div>
-    </header>
+                <span class="sticker sticker-one">
+                    feito
+                    <br>
+                    com amor
+                </span>
 
-    <!-- ANATOMIA -->
-    <section id="anatomia" class="section">
-        <div class="container">
-            <p class="section-label">Estrutura Biológica</p>
-            <h2 class="section-title">Anatomia do Sistema Óptico</h2>
-            <p class="section-lead">O olho funciona como uma câmera fotográfica biológica de alta precisão, retratando feixes luminosos em impulsos elétricos.</p>
+                <span class="sticker sticker-two">
+                    yum!
+                </span>
 
-            <div class="anatomy-grid">
-                <div class="parts-list">
-                    <div class="part-item">
-                        <span class="part-icon">&#10061;</span>
-                        <div>
-                            <h3>Córnea</h3>
-                            <p>Principal elemento refrativo do olho (~43 dioptrias). Transparente e avascular, atua como uma lente convergente fixa.</p>
-                        </div>
-                    </div>
-                    <div class="part-item">
-                        <span class="part-icon">&#10065;</span>
-                        <div>
-                            <h3>Cristalino</h3>
-                            <p>Lente biconvexa flexível (~15 a 20 dioptrias). Altera sua curvatura para ajustar o foco a diferentes distâncias (acomodação).</p>
-                        </div>
-                    </div>
-                    <div class="part-item">
-                        <span class="part-icon">&#11041;</span>
-                        <div>
-                            <h3>Íris e Pupila</h3>
-                            <p>Atuam como o diafragma de uma câmera, regulando a entrada de luz e controlando a aberração esférica.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="parts-list">
-                    <div class="part-item">
-                        <span class="part-icon">&#9648;</span>
-                        <div>
-                            <h3>Retina</h3>
-                            <p>O "anteparo" fotossensível no fundo do olho, onde a imagem focada é convertida em sinais nervosos.</p>
-                        </div>
-                    </div>
-                    <div class="part-item">
-                        <span class="part-icon">&#10022;</span>
-                        <div>
-                            <h3>Fóvea</h3>
-                            <p>Região central da retina com altíssima densidade de cones, responsável pela visão de alta nitidez e cores.</p>
-                        </div>
-                    </div>
-                </div>
             </div>
 
-            <!-- RETINA INFO -->
-            <div class="retina-section">
-                <div class="retina-info">
-                    <h3>Fotorreceptores: Bastonetes &amp; Cones</h3>
-                    <p>A retina contém dois tipos principais de células fotorreceptoras que captam a luz focalizada.</p>
+        </section>
 
-                    <div class="receptor-row">
-                        <div class="receptor-card rod">
-                            <span class="r-icon">&#10074;</span>
-                            <h4>Bastonetes</h4>
-                            <p>Alta sensibilidade à luz. Responsáveis pela visão noturna e periférica (monocromática).</p>
-                        </div>
-                        <div class="receptor-card cone">
-                            <span class="r-icon">&#9650;</span>
-                            <h4>Cones</h4>
-                            <p>Detectam cores (RGB). Exigem maior intensidade de luz e fornecem alta resolução espacial.</p>
-                        </div>
-                    </div>
+
+        <!-- =========================
+             CATEGORIAS
+        ========================== -->
+        <section class="category-section" id="categorias">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="eyebrow">
+                        ENCONTRE SUA INSPIRAÇÃO
+                    </span>
+
+                    <h2>
+                        O que você quer cozinhar?
+                    </h2>
                 </div>
+
+
+                <div class="category-list" id="categoryList">
+
+                    <button
+                        class="category active"
+                        data-category="Todas">
+                        🍽️ Todas
+                    </button>
+
+                    <button
+                        class="category"
+                        data-category="Doces">
+                        🍰 Doces
+                    </button>
+
+                    <button
+                        class="category"
+                        data-category="Massas">
+                        🍝 Massas
+                    </button>
+
+                    <button
+                        class="category"
+                        data-category="Saudáveis">
+                        🥗 Saudáveis
+                    </button>
+
+                    <button
+                        class="category"
+                        data-category="Lanches">
+                        🥪 Lanches
+                    </button>
+
+                </div>
+
             </div>
-        </div>
-    </section>
 
-    <!-- FÍSICA DA VISÃO -->
-    <section id="fisica" class="section dark-section">
-        <div class="container">
-            <p class="section-label light">Princípios Físicos</p>
-            <h2 class="section-title light">A Física da Refração Ocular</h2>
-            <p class="section-lead light">A formação da imagem no olho segue a Lei de Snell-Descartes para meios refrativos dinâmicos.</p>
+        </section>
 
-            <div class="physics-grid">
-                <div class="physics-card">
-                    <span class="phys-num">01 / REFRAÇÃO</span>
-                    <h3>Equação dos Fabricantes de Lentes</h3>
-                    <p>A dioptria (<em>D</em>), vulgo "grau", é dada pelo inverso da distância focal (<em>f</em>) em metros:</p>
-                    <div class="formula">D = 1 / f</div>
-                    <ul class="phys-list">
-                        <li>&bull; Olho Emétrope em repouso: <em>f</em> &approx; 17 mm (<em>D</em> &approx; 60 D)</li>
-                        <li>&bull; Acomodação máxima: <em>D</em> &approx; 70 D</li>
-                    </ul>
+
+        <!-- =========================
+             RECEITAS
+        ========================== -->
+        <section class="recipes-section" id="receitas">
+
+            <div class="toolbar">
+
+                <div>
+
+                    <span class="eyebrow">
+                        NOSSA COLEÇÃO
+                    </span>
+
+                    <h2>
+                        Receitas favoritas
+                    </h2>
+
                 </div>
 
-                <div class="physics-card">
-                    <span class="phys-num">02 / MEIOS</span>
-                    <h3>Índices de Refração (<em>n</em>)</h3>
-                    <p>A luz reduz sua velocidade ao atravessar os componentes transparentes do olho:</p>
-                    
-                    <div class="indices-table-wrap">
-                        <table class="indices-table">
-                            <thead>
-                                <tr>
-                                    <th>Meio Óptico</th>
-                                    <th>Índice (<em>n</em>)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>Ar (externo)</td><td>1.000</td></tr>
-                                <tr><td>Córnea</td><td>1.376</td></tr>
-                                <tr><td>Humor Aquoso</td><td>1.336</td></tr>
-                                <tr><td>Cristalino (centro)</td><td>1.406</td></tr>
-                                <tr><td>Humor Vítreo</td><td>1.337</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+
+                <label class="search-box">
+
+                    <span>⌕</span>
+
+                    <input
+                        type="search"
+                        id="searchInput"
+                        placeholder="Buscar receita..."
+                    >
+
+                </label>
+
             </div>
-        </div>
-    </section>
 
-    <!-- SIMULADOR INTERATIVO -->
-    <section id="simulador" class="section alt-section">
-        <div class="container">
-            <p class="section-label">Interativo</p>
-            <h2 class="section-title">Simulador Óptico Ocular</h2>
-            <p class="section-lead">Ajuste os parâmetros ópticos abaixo para observar como a luz é focada na retina.</p>
 
-            <div class="sim-layout">
-                <div class="sim-main">
-                    <div class="canvas-wrap">
-                        <canvas id="eyeCanvas" width="700" height="350"></canvas>
-                    </div>
-                    <div id="simStatus" class="sim-status">Foco ideal na retina (Emetropia)</div>
-                </div>
-
-                <div class="sim-controls">
-                    <div class="ctrl-group">
-                        <label for="lensPower">Poder do Cristalino (Dioptrias)</label>
-                        <div class="range-row">
-                            <span class="range-min">Fraco</span>
-                            <input type="range" id="lensPower" min="10" max="30" value="20">
-                            <span class="range-max">Forte</span>
-                        </div>
-                        <div class="value-row">
-                            <span class="val-label">Valor:</span>
-                            <span id="lensPowerVal" class="val-num">20 D</span>
-                        </div>
-                    </div>
-
-                    <div class="ctrl-group">
-                        <label for="eyeLength">Comprimento do Olho (mm)</label>
-                        <div class="range-row">
-                            <span class="range-min">Curto</span>
-                            <input type="range" id="eyeLength" min="18" max="30" value="24">
-                            <span class="range-max">Longo</span>
-                        </div>
-                        <div class="value-row">
-                            <span class="val-label">Valor:</span>
-                            <span id="eyeLengthVal" class="val-num">24 mm</span>
-                        </div>
-                    </div>
-
-                    <div class="preset-group">
-                        <span class="preset-label">Predefinições:</span>
-                        <button class="preset-btn" onclick="applyPreset('emetropia')">Visão Normal (Emetropia)</button>
-                        <button class="preset-btn" onclick="applyPreset('miopia')">Miopia</button>
-                        <button class="preset-btn" onclick="applyPreset('hipermetropia')">Hipermetropia</button>
-                    </div>
-
-                    <button class="btn-reset" onclick="resetSim()">Restaurar Padrão</button>
-                </div>
+            <!-- As receitas serão colocadas pelo JavaScript -->
+            <div
+                class="recipe-grid"
+                id="recipeGrid">
             </div>
-        </div>
-    </section>
 
-    <!-- DEFICIÊNCIAS VISUAIS -->
-    <section id="deficiencias" class="section">
-        <div class="container">
-            <p class="section-label">Anomalias Ópticas</p>
-            <h2 class="section-title">Erros de Refração</h2>
-            <p class="section-lead">Desvios no tamanho do bulbo ocular ou no raio das superfícies refrativas causam visão desfocada.</p>
+            <p
+                class="empty-state"
+                id="emptyState"
+                hidden>
+                Nenhuma receita encontrada. 🌿
+            </p>
 
-            <div class="def-grid">
-                <div class="def-card miopia-card">
-                    <span class="def-icon">&#10555;</span>
-                    <h3>Miopia</h3>
-                    <div class="def-stat">Foco ANTES da retina</div>
-                    <p>O bulbo ocular é mais longo que o normal ou a córnea é muito curva. Dificuldade para enxergar objetos distantes.</p>
-                    <div class="def-correction"><strong>Correção:</strong> Lentes Divergentes (Côncavas).</div>
-                </div>
+        </section>
 
-                <div class="def-card hiper-card">
-                    <span class="def-icon">&#10555;</span>
-                    <h3>Hipermetropia</h3>
-                    <div class="def-stat">Foco DEPOIS da retina</div>
-                    <p>O olho é mais curto que o normal ou o sistema refrativo é fraco. Dificuldade para focar objetos próximos.</p>
-                    <div class="def-correction"><strong>Correção:</strong> Lentes Convergentes (Convexas).</div>
-                </div>
 
-                <div class="def-card astig-card">
-                    <span class="def-icon">&#10926;</span>
-                    <h3>Astigmatismo</h3>
-                    <div class="def-stat">Múltiplos pontos focalizados</div>
-                    <p>Irregularidade na curvatura da córnea ou cristalino, gerando diferentes raios de refração nos eixos horizontal e vertical.</p>
-                    <div class="def-correction"><strong>Correção:</strong> Lentes Cilíndricas.</div>
-                </div>
+        <!-- =========================
+             DICA
+        ========================== -->
+        <section class="tip-banner">
 
-                <div class="def-card presby-card">
-                    <span class="def-icon">&#8987;</span>
-                    <h3>Presbiopia</h3>
-                    <div class="def-stat">Perda de flexibilidade</div>
-                    <p>Conhecida como "vista cansada", ocorre com o envelhecimento devido ao enrijecimento natural do cristalino.</p>
-                    <div class="def-correction"><strong>Correção:</strong> Lentes Multifocais ou Leitura.</div>
-                </div>
+            <div class="tip-icon">
+                💡
             </div>
-        </div>
-    </section>
 
-    <!-- FONTES -->
-    <section class="section sources-section">
-        <div class="container">
-            <p class="section-label">Referências</p>
-            <h2 class="section-title">Fontes de Pesquisa</h2>
-            <div class="sources-grid">
-                <div class="source-card">
-                    <span class="source-logo">LIVRO</span>
-                    <div>
-                        <h4>Halliday &amp; Resnick</h4>
-                        <p>Fundamentos de Física: Óptica e Física Moderna (Vol. 4).</p>
-                    </div>
-                </div>
-                <div class="source-card">
-                    <span class="source-logo">ARTIGO</span>
-                    <div>
-                        <h4>Atchison &amp; Smith</h4>
-                        <p>Optics of the Human Eye - Butterworth-Heinemann.</p>
-                    </div>
-                </div>
-                <div class="source-card">
-                    <span class="source-logo">WEB</span>
-                    <div>
-                        <h4>HyperPhysics</h4>
-                        <p>Georgia State University - Vision Optics Concepts.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            <div>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <p class="footer-brand">OPTICA // OLHO</p>
-            <p class="footer-text">Projeto Educacional Interativo sobre Óptica Geométrica e Visão Humana.</p>
-            <p class="footer-copy">&copy; 2026 Óptica do Olho. Todos os direitos reservados.</p>
-            
-            <div class="footer-contact">
-                <p class="contact-title">Contato</p>
-                <div class="contact-links">
-                    <a href="#" class="contact-item instagram">Instagram</a>
-                    <a href="#" class="contact-item whatsapp">WhatsApp</a>
-                    <a href="#" class="contact-item gmail">E-mail</a>
-                </div>
+                <span class="eyebrow">
+                    DICA DO DIA
+                </span>
+
+                <h3>
+                    Leia a receita inteira antes de começar.
+                </h3>
+
+                <p>
+                    Separar os ingredientes e utensílios primeiro
+                    deixa o preparo muito mais tranquilo.
+                </p>
+
             </div>
+
+        </section>
+
+
+        <!-- =========================
+             SOBRE
+        ========================== -->
+        <section class="about" id="sobre">
+
+            <div class="about-illustration">
+                🥣
+                <span>♡</span>
+            </div>
+
+            <div>
+
+                <span class="eyebrow">
+                    SOBRE O SABOR & AFETO
+                </span>
+
+                <h2>
+                    Comida boa fica ainda melhor
+                    quando é compartilhada.
+                </h2>
+
+                <p>
+                    Este cantinho foi criado para reunir receitas
+                    práticas, afetivas e gostosas. Avalie suas
+                    favoritas e deixe um comentário para ajudar
+                    outras pessoas a cozinhar também!
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         RODAPÉ
+    ========================== -->
+    <footer>
+
+        <div class="logo">
+            <span class="logo-icon">🍋</span>
+            <span>Sabor <strong>&</strong> Afeto</span>
         </div>
+
+        <p>
+            Feito para quem acredita que toda receita
+            pode virar uma boa memória. ♡
+        </p>
+
     </footer>
 
-    <script src="./script.js"></script>
+
+    <!-- =========================<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Óptica do Olho Humano</title>
+    
+    <!-- Fontes Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav">
+        <div class="nav-logo">OPTICA // OLHO</div>
+        <ul class="nav-links">
+            <li><a href="#anatomia">Anatomia</a></li>
+            <li><a href="#fisica">Física</a></li>
+            <li><a href="#simulador">Simulador</a></li>
+            <li><a href="#deficiencias">Deficiências</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-content">
+            <p class="hero-eyebrow">Física Médica &amp; Biologia</p>
+            <h1 class="hero-title">A Óptica do <em>Olho Humano</em></h1>
+            <p class="hero-desc">Explore como a luz interage com o sistema ocular humano através de modelos ópticos e simulações interativas em tempo real.</p>
+            
+            <div class="hero-stats">
+                <div class="stat">
+         MODAL DA RECEITA
+    ========================== -->
+    <div
+        class="modal-backdrop"
+        id="modalBackdrop"
+        hidden>
+
+        <article class="modal">
+
+            <button
+                class="modal-close"
+                id="modalClose">
+                ×
+            </button>
+
+
+            <img
+                class="modal-image"
+                id="modalImage"
+                src=""
+                alt=""
+            >
+
+
+            <div class="modal-content">
+
+                <div class="modal-top">
+
+                    <span
+                        class="pill"
+                        id="modalCategory">
+                    </span>
+
+                    <button
+                        class="heart-btn"
+                        id="modalFavorite">
+                        ♡
+                    </button>
+
+                </div>
+
+
+                <h2 id="modalTitle"></h2>
+
+                <p
+                    class="modal-description"
+                    id="modalDescription">
+                </p>
+
+
+                <div
+                    class="recipe-meta"
+                    id="modalMeta">
+                </div>
+
+
+                <div class="modal-columns">
+
+                    <!-- INGREDIENTES -->
+                    <div>
+
+                        <h3>
+                            🛒 Ingredientes
+                        </h3>
+
+                        <ul id="modalIngredients">
+                        </ul>
+
+                    </div>
+
+
+                    <!-- PREPARO -->
+                    <div>
+
+                        <h3>
+                            👩‍🍳 Modo de preparo
+                        </h3>
+
+                        <ol id="modalSteps">
+                        </ol>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     AVALIAÇÃO
+                ========================== -->
+                <section class="review-area">
+
+                    <h3>
+                        ⭐ Avalie esta receita
+                    </h3>
+
+                    <div
+                        class="star-picker"
+                        id="starPicker">
+
+                        <button data-star="1">★</button>
+                        <button data-star="2">★</button>
+                        <button data-star="3">★</button>
+                        <button data-star="4">★</button>
+                        <button data-star="5">★</button>
+
+                    </div>
+
+                    <p
+                        class="rating-hint"
+                        id="ratingHint">
+                        Clique nas estrelas para avaliar.
+                    </p>
+
+
+                    <!-- =========================
+                         COMENTÁRIOS
+                    ========================== -->
+
+                    <h3>
+                        💬 Comentários
+                    </h3>
+
+                    <form id="commentForm">
+
+                        <div class="comment-form-row">
+
+                            <input
+                                id="commentName"
+                                maxlength="30"
+                                placeholder="Seu nome"
+                                required
+                            >
+
+                            <input
+                                id="commentText"
+                                maxlength="180"
+                                placeholder="O que você achou da receita?"
+                                required
+                            >
+
+                            <button
+                                class="btn btn-primary"
+                                type="submit">
+                                Comentar
+                            </button>
+
+                        </div>
+
+                    </form>
+
+
+                    <div
+                        class="comments-list"
+                        id="commentsList">
+                    </div>
+
+                </section>
+
+            </div>
+
+        </article>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script src="scrip.js"></script>
+
 </body>
 </html>
