@@ -1,6 +1,6 @@
 /* ==========================================
    SABOR & AFETO
-   JAVASCRIPT DO SITE
+   JAVASCRIPT
 
    Este arquivo controla:
    - Receitas
@@ -12,335 +12,225 @@
    - Modal
    - Receita surpresa
 
-   Os dados ficam salvos no navegador
-   através do localStorage.
+   Os dados são salvos no navegador
+   usando localStorage.
 ========================================== */
 
 
 /* ==========================================
-   BANCO DE RECEITAS
+   RECEITAS
 ========================================== */
 
-const recipes = [
+const receitas = [
 
     {
-        id: "lasanha",
+        id: 1,
+        nome: "Lasanha de Forno",
+        categoria: "Massas",
 
-        name: "Lasanha de forno",
+        imagem:
+            "https://images.unsplash.com/photo-1574894709920-11b28e7367a5?auto=format&fit=crop&w=900&q=80",
 
-        category: "Massas",
+        descricao:
+            "Camadas cremosas, molho bem temperado e muito queijo.",
 
-        image:
-            "https://images.unsplash.com/photo-1574894709920-11b28e7367a5?auto=format&fit=crop&w=900&q=85",
+        tempo: "55 min",
+        dificuldade: "Médio",
+        porcoes: "6 porções",
 
-        description:
-            "Camadas cremosas, molho bem temperado e muito queijo para um almoço especial.",
-
-        time: "55 min",
-
-        difficulty: "Médio",
-
-        servings: "6 porções",
-
-        ingredients: [
-
+        ingredientes: [
             "500 g de massa para lasanha",
-
             "500 g de carne moída",
-
             "2 xícaras de molho de tomate",
-
             "300 g de muçarela",
-
             "200 g de presunto",
-
             "1 cebola picada",
-
-            "Sal, alho e orégano a gosto"
-
+            "Sal e temperos a gosto"
         ],
 
-        steps: [
-
-            "Refogue a cebola e o alho, acrescente a carne e tempere.",
-
-            "Junte o molho de tomate e cozinhe por 10 minutos.",
-
+        preparo: [
+            "Refogue a cebola e acrescente a carne moída.",
+            "Adicione o molho de tomate e deixe cozinhar.",
             "Monte camadas de molho, massa, carne, presunto e queijo.",
-
-            "Finalize com muçarela e orégano.",
-
-            "Asse a 200 °C por cerca de 30 minutos e sirva quente."
-
+            "Finalize com muçarela.",
+            "Asse a 200 °C por aproximadamente 30 minutos."
         ]
     },
 
 
     {
-        id: "bolo-cenoura",
+        id: 2,
+        nome: "Bolo de Cenoura",
+        categoria: "Doces",
 
-        name: "Bolo de cenoura",
+        imagem:
+            "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=900&q=80",
 
-        category: "Doces",
+        descricao:
+            "Bolo fofinho de cenoura com uma deliciosa cobertura de chocolate.",
 
-        image:
-            "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=900&q=85",
+        tempo: "45 min",
+        dificuldade: "Fácil",
+        porcoes: "10 fatias",
 
-        description:
-            "Clássico fofinho com cobertura de chocolate brilhante e irresistível.",
-
-        time: "45 min",
-
-        difficulty: "Fácil",
-
-        servings: "10 fatias",
-
-        ingredients: [
-
+        ingredientes: [
             "3 cenouras médias",
-
             "3 ovos",
-
             "1 xícara de óleo",
-
             "2 xícaras de açúcar",
-
-            "2½ xícaras de farinha de trigo",
-
-            "1 colher de sopa de fermento",
-
-            "4 colheres de chocolate em pó",
-
-            "1 colher de manteiga"
-
+            "2½ xícaras de farinha",
+            "1 colher de fermento",
+            "4 colheres de chocolate em pó"
         ],
 
-        steps: [
-
-            "Bata cenoura, ovos e óleo no liquidificador.",
-
-            "Misture com açúcar e farinha em uma tigela.",
-
-            "Acrescente o fermento delicadamente.",
-
-            "Asse em forma untada a 180 °C por aproximadamente 35 minutos.",
-
-            "Prepare a cobertura de chocolate e espalhe sobre o bolo."
-
+        preparo: [
+            "Bata as cenouras, os ovos e o óleo.",
+            "Misture com açúcar e farinha.",
+            "Acrescente o fermento.",
+            "Coloque em uma forma untada.",
+            "Asse a 180 °C por aproximadamente 35 minutos.",
+            "Finalize com cobertura de chocolate."
         ]
     },
 
 
     {
-        id: "panqueca",
+        id: 3,
+        nome: "Panqueca de Banana",
+        categoria: "Saudáveis",
 
-        name: "Panqueca colorida",
+        imagem:
+            "https://images.unsplash.com/photo-1506084868230-bb9d95c24759?auto=format&fit=crop&w=900&q=80",
 
-        category: "Saudáveis",
+        descricao:
+            "Panquecas leves e deliciosas para um café da manhã especial.",
 
-        image:
-            "https://images.unsplash.com/photo-1506084868230-bb9d95c24759?auto=format&fit=crop&w=900&q=85",
+        tempo: "20 min",
+        dificuldade: "Fácil",
+        porcoes: "4 porções",
 
-        description:
-            "Panquecas leves e bonitas para começar o dia com energia e sabor.",
-
-        time: "20 min",
-
-        difficulty: "Fácil",
-
-        servings: "4 porções",
-
-        ingredients: [
-
+        ingredientes: [
             "1 banana madura",
-
             "2 ovos",
-
             "½ xícara de aveia",
-
-            "1 colher de chá de canela",
-
+            "Canela a gosto",
             "Frutas para servir",
-
-            "Iogurte natural a gosto",
-
             "Mel a gosto"
-
         ],
 
-        steps: [
-
-            "Amasse a banana e misture com os ovos.",
-
-            "Adicione a aveia e a canela.",
-
-            "Aqueça uma frigideira antiaderente.",
-
-            "Coloque pequenas porções da massa e doure dos dois lados.",
-
-            "Sirva com frutas, iogurte e um fio de mel."
-
+        preparo: [
+            "Amasse a banana.",
+            "Misture os ovos e a aveia.",
+            "Adicione canela.",
+            "Aqueça uma frigideira.",
+            "Doure as panquecas dos dois lados.",
+            "Sirva com frutas e mel."
         ]
     },
 
 
     {
-        id: "brownie",
+        id: 4,
+        nome: "Brownie de Chocolate",
+        categoria: "Doces",
 
-        name: "Brownie de chocolate",
+        imagem:
+            "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=80",
 
-        category: "Doces",
+        descricao:
+            "Brownie de chocolate macio por dentro e delicioso.",
 
-        image:
-            "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=85",
+        tempo: "35 min",
+        dificuldade: "Fácil",
+        porcoes: "12 pedaços",
 
-        description:
-            "Brownie intenso, macio por dentro e com aquela casquinha delicada por cima.",
-
-        time: "35 min",
-
-        difficulty: "Fácil",
-
-        servings: "12 pedaços",
-
-        ingredients: [
-
+        ingredientes: [
             "200 g de chocolate meio amargo",
-
             "120 g de manteiga",
-
             "3 ovos",
-
             "1 xícara de açúcar",
-
             "¾ xícara de farinha",
-
             "3 colheres de chocolate em pó",
-
             "1 pitada de sal"
-
         ],
 
-        steps: [
-
+        preparo: [
             "Derreta o chocolate com a manteiga.",
-
             "Misture os ovos e o açúcar.",
-
-            "Junte o chocolate derretido.",
-
-            "Adicione farinha, chocolate em pó e sal.",
-
-            "Asse a 180 °C por aproximadamente 20 a 25 minutos."
-
+            "Acrescente o chocolate derretido.",
+            "Adicione a farinha e o chocolate em pó.",
+            "Asse a 180 °C por aproximadamente 25 minutos."
         ]
     },
 
 
     {
-        id: "sanduiche",
+        id: 5,
+        nome: "Sanduíche Caprese",
+        categoria: "Lanches",
 
-        name: "Sanduíche caprese",
+        imagem:
+            "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=900&q=80",
 
-        category: "Lanches",
+        descricao:
+            "Sanduíche fresco com tomate, queijo e manjericão.",
 
-        image:
-            "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=900&q=85",
+        tempo: "10 min",
+        dificuldade: "Muito fácil",
+        porcoes: "2 porções",
 
-        description:
-            "Uma combinação fresca de tomate, queijo e manjericão em pão crocante.",
-
-        time: "10 min",
-
-        difficulty: "Muito fácil",
-
-        servings: "2 porções",
-
-        ingredients: [
-
-            "2 pães ciabatta ou franceses",
-
+        ingredientes: [
+            "2 pães",
             "1 tomate grande",
-
             "150 g de muçarela",
-
             "Folhas de manjericão",
-
             "Azeite",
-
-            "Sal e pimenta",
-
-            "Creme balsâmico opcional"
-
+            "Sal e pimenta"
         ],
 
-        steps: [
-
-            "Corte os pães ao meio e aqueça levemente.",
-
+        preparo: [
+            "Corte os pães ao meio.",
             "Fatie o tomate e a muçarela.",
-
-            "Monte alternando tomate, queijo e manjericão.",
-
-            "Tempere com sal, pimenta e azeite.",
-
-            "Finalize com creme balsâmico e sirva."
-
+            "Monte o sanduíche.",
+            "Adicione manjericão.",
+            "Tempere com azeite, sal e pimenta.",
+            "Sirva imediatamente."
         ]
     },
 
 
     {
-        id: "risoto",
+        id: 6,
+        nome: "Risoto Cremoso",
+        categoria: "Massas",
 
-        name: "Risoto cremoso",
+        imagem:
+            "https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&fit=crop&w=900&q=80",
 
-        category: "Massas",
+        descricao:
+            "Risoto cremoso e saboroso para um jantar especial.",
 
-        image:
-            "https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&fit=crop&w=900&q=85",
+        tempo: "40 min",
+        dificuldade: "Médio",
+        porcoes: "4 porções",
 
-        description:
-            "Risoto cremoso e reconfortante, perfeito para um jantar caprichado.",
-
-        time: "40 min",
-
-        difficulty: "Médio",
-
-        servings: "4 porções",
-
-        ingredients: [
-
+        ingredientes: [
             "1½ xícara de arroz arbóreo",
-
             "1 litro de caldo de legumes",
-
             "1 cebola pequena",
-
-            "½ xícara de vinho branco opcional",
-
+            "½ xícara de vinho branco",
             "2 colheres de manteiga",
-
-            "½ xícara de parmesão ralado",
-
+            "½ xícara de parmesão",
             "Sal e pimenta"
-
         ],
 
-        steps: [
-
-            "Mantenha o caldo aquecido em uma panela.",
-
-            "Refogue a cebola em metade da manteiga.",
-
-            "Adicione o arroz e mexa por 2 minutos.",
-
-            "Acrescente o caldo aos poucos.",
-
-            "Mexa até o arroz ficar cremoso e al dente.",
-
+        preparo: [
+            "Aqueça o caldo de legumes.",
+            "Refogue a cebola na manteiga.",
+            "Acrescente o arroz.",
+            "Adicione o caldo aos poucos.",
+            "Mexa até o arroz ficar cremoso.",
             "Finalize com manteiga e parmesão."
-
         ]
     }
 
@@ -348,90 +238,62 @@ const recipes = [
 
 
 /* ==========================================
-   VARIÁVEIS
+   DADOS DO SITE
 ========================================== */
 
-const storageKey = "saborAfetoData";
+let dados = JSON.parse(
+    localStorage.getItem("saborAfeto")
+) || {
 
-let activeRecipeId = null;
+    favoritos: [],
 
-let activeCategory = "Todas";
+    avaliacoes: {},
+
+    comentarios: {}
+
+};
 
 
-/* ==========================================
-   CARREGAR DADOS
-========================================== */
+let receitaAtual = null;
 
-function loadData() {
-
-    try {
-
-        return JSON.parse(
-            localStorage.getItem(storageKey)
-        ) || {
-
-            ratings: {},
-
-            comments: {},
-
-            favorites: []
-
-        };
-
-    } catch {
-
-        return {
-
-            ratings: {},
-
-            comments: {},
-
-            favorites: []
-
-        };
-
-    }
-}
+let categoriaAtual = "Todas";
 
 
 /* ==========================================
    SALVAR DADOS
 ========================================== */
 
-function saveData(data) {
+function salvarDados() {
 
     localStorage.setItem(
-        storageKey,
-        JSON.stringify(data)
+        "saborAfeto",
+        JSON.stringify(dados)
     );
 
 }
 
 
 /* ==========================================
-   CALCULAR NOTA
+   CALCULAR MÉDIA
 ========================================== */
 
-function averageRating(recipeId) {
+function calcularMedia(id) {
 
-    const data = loadData();
+    const avaliacoes =
+        dados.avaliacoes[id] || [];
 
-    const ratings =
-        data.ratings[recipeId] || [];
-
-    if (!ratings.length) {
-
+    if (avaliacoes.length === 0) {
         return 0;
-
     }
 
-    return (
-        ratings.reduce(
-            (total, rating) =>
-                total + rating,
+    const soma =
+        avaliacoes.reduce(
+            (total, nota) => total + nota,
             0
-        ) / ratings.length
-    );
+        );
+
+    return soma / avaliacoes.length;
+
 }
 
 
@@ -439,20 +301,21 @@ function averageRating(recipeId) {
    DESENHAR ESTRELAS
 ========================================== */
 
-function stars(value) {
+function mostrarEstrelas(media) {
 
-    const rounded =
-        Math.round(value);
+    let resultado = "";
 
-    return "★★★★★"
-        .split("")
-        .map(
-            (star, index) =>
-                index < rounded
-                    ? "★"
-                    : "☆"
-        )
-        .join("");
+    for (let i = 1; i <= 5; i++) {
+
+        if (i <= Math.round(media)) {
+            resultado += "★";
+        } else {
+            resultado += "☆";
+        }
+
+    }
+
+    return resultado;
 
 }
 
@@ -461,523 +324,173 @@ function stars(value) {
    MOSTRAR RECEITAS
 ========================================== */
 
-function renderRecipes() {
+function mostrarReceitas(lista = receitas) {
 
-    const search =
-        document
-            .getElementById("searchInput")
-            .value
-            .toLowerCase()
-            .trim();
-
-
-    const data = loadData();
-
-    const grid =
-        document.getElementById("recipeGrid");
-
-    const empty =
-        document.getElementById("emptyState");
-
-
-    const filtered =
-        recipes.filter(recipe => {
-
-            const matchesCategory =
-                activeCategory === "Todas" ||
-                recipe.category === activeCategory;
-
-
-            const matchesSearch =
-                `${recipe.name}
-                ${recipe.category}
-                ${recipe.description}`
-                    .toLowerCase()
-                    .includes(search);
-
-
-            return (
-                matchesCategory &&
-                matchesSearch
-            );
-
-        });
-
-
-    grid.innerHTML =
-        filtered
-            .map(recipe => {
-
-                const average =
-                    averageRating(recipe.id);
-
-                const favorite =
-                    data.favorites
-                        .includes(recipe.id);
-
-
-                const ratings =
-                    data.ratings[recipe.id] || [];
-
-
-                const ratingText =
-                    average
-                        ? `${average.toFixed(1)} (${ratings.length})`
-                        : "Sem avaliações";
-
-
-                return `
-
-                    <article class="recipe-card">
-
-                        <div class="card-image-wrap">
-
-                            <img
-                                class="card-image"
-                                src="${recipe.image}"
-                                alt="${recipe.name}"
-                                loading="lazy"
-                            >
-
-                            <span class="pill card-pill">
-                                ${recipe.category}
-                            </span>
-
-
-                            <button
-                                class="favorite-card ${favorite ? "is-favorite" : ""}"
-                                data-favorite="${recipe.id}"
-                                aria-label="Favoritar">
-
-                                ${favorite ? "♥" : "♡"}
-
-                            </button>
-
-                        </div>
-
-
-                        <div class="card-body">
-
-                            <h3>
-                                ${recipe.name}
-                            </h3>
-
-                            <p>
-                                ${recipe.description}
-                            </p>
-
-
-                            <div class="card-footer">
-
-                                <span class="rating">
-
-                                    ${stars(average)}
-
-                                    <small>
-                                        ${ratingText}
-                                    </small>
-
-                                </span>
-
-
-                                <span class="time">
-
-                                    ⏱ ${recipe.time}
-
-                                </span>
-
-                            </div>
-
-
-                            <button
-                                class="view-recipe"
-                                data-open="${recipe.id}">
-
-                                Ver receita →
-
-                            </button>
-
-                        </div>
-
-                    </article>
-
-                `;
-
-            })
-            .join("");
-
-
-    empty.hidden =
-        filtered.length !== 0;
-
-
-    /* Botões para abrir receita */
-
-    document
-        .querySelectorAll("[data-open]")
-        .forEach(button => {
-
-            button.addEventListener(
-                "click",
-                () =>
-                    openModal(
-                        button.dataset.open
-                    )
-            );
-
-        });
-
-
-    /* Botões favoritos */
-
-    document
-        .querySelectorAll("[data-favorite]")
-        .forEach(button => {
-
-            button.addEventListener(
-                "click",
-                () =>
-                    toggleFavorite(
-                        button.dataset.favorite
-                    )
-            );
-
-        });
-
-
-    document
-        .getElementById("favoriteCount")
-        .textContent =
-        data.favorites.length;
-
-}
-
-
-/* ==========================================
-   FAVORITOS
-========================================== */
-
-function toggleFavorite(id) {
-
-    const data = loadData();
-
-
-    if (
-        data.favorites.includes(id)
-    ) {
-
-        data.favorites =
-            data.favorites.filter(
-                item => item !== id
-            );
-
-    } else {
-
-        data.favorites.push(id);
-
-    }
-
-
-    saveData(data);
-
-    renderRecipes();
-
-
-    if (
-        activeRecipeId === id
-    ) {
-
-        updateModalFavorite();
-
-    }
-
-}
-
-
-/* ==========================================
-   ATUALIZAR FAVORITO DO MODAL
-========================================== */
-
-function updateModalFavorite() {
-
-    const data = loadData();
-
-    const button =
+    const container =
         document.getElementById(
-            "modalFavorite"
+            "listaReceitas"
         );
 
-
-    const favorite =
-        data.favorites.includes(
-            activeRecipeId
-        );
-
-
-    button.classList.toggle(
-        "is-favorite",
-        favorite
-    );
-
-
-    button.textContent =
-        favorite
-            ? "♥"
-            : "♡";
-
-}
-
-
-/* ==========================================
-   ABRIR MODAL
-========================================== */
-
-function openModal(id) {
-
-    const recipe =
-        recipes.find(
-            item => item.id === id
-        );
-
-
-    if (!recipe) return;
-
-
-    activeRecipeId = id;
-
-
-    document.getElementById(
-        "modalImage"
-    ).src = recipe.image;
-
-
-    document.getElementById(
-        "modalImage"
-    ).alt = recipe.name;
-
-
-    document.getElementById(
-        "modalTitle"
-    ).textContent = recipe.name;
-
-
-    document.getElementById(
-        "modalCategory"
-    ).textContent =
-        recipe.category;
-
-
-    document.getElementById(
-        "modalDescription"
-    ).textContent =
-        recipe.description;
-
-
-    document.getElementById(
-        "modalMeta"
-    ).innerHTML = `
-
-        <span>
-            ⏱ ${recipe.time}
-        </span>
-
-        <span>
-            🍴 ${recipe.servings}
-        </span>
-
-        <span>
-            📈 ${recipe.difficulty}
-        </span>
-
-    `;
-
-
-    document.getElementById(
-        "modalIngredients"
-    ).innerHTML =
-        recipe.ingredients
-            .map(
-                ingredient =>
-                    `<li>${ingredient}</li>`
-            )
-            .join("");
-
-
-    document.getElementById(
-        "modalSteps"
-    ).innerHTML =
-        recipe.steps
-            .map(
-                step =>
-                    `<li>${step}</li>`
-            )
-            .join("");
-
-
-    document.getElementById(
-        "modalBackdrop"
-    ).hidden = false;
-
-
-    document.body.style.overflow =
-        "hidden";
-
-
-    updateModalFavorite();
-
-    renderReviews();
-
-}
-
-
-/* ==========================================
-   FECHAR MODAL
-========================================== */
-
-function closeModal() {
-
-    document.getElementById(
-        "modalBackdrop"
-    ).hidden = true;
-
-
-    document.body.style.overflow =
-        "";
-
-
-    activeRecipeId = null;
-
-}
-
-
-/* ==========================================
-   MOSTRAR AVALIAÇÕES E COMENTÁRIOS
-========================================== */
-
-function renderReviews() {
-
-    const data = loadData();
-
-
-    const ratings =
-        data.ratings[activeRecipeId] || [];
-
-
-    const comments =
-        data.comments[activeRecipeId] || [];
-
-
-    const average =
-        ratings.length
-            ? ratings.reduce(
-                (a, b) => a + b,
-                0
-            ) / ratings.length
-            : 0;
-
-
-    /* Atualiza estrelas */
-
-    document
-        .querySelectorAll(
-            "#starPicker button"
-        )
-        .forEach(button => {
-
-            button.classList.toggle(
-                "active",
-
-                Number(button.dataset.star)
-                    <= Math.round(average)
-            );
-
-        });
-
-
-    /* Texto da avaliação */
-
-    document.getElementById(
-        "ratingHint"
-    ).textContent =
-
-        ratings.length
-
-            ? `Nota média: ${average.toFixed(1)} de 5 (${ratings.length} avaliação${ratings.length === 1 ? "" : "ões"}).`
-
-            : "Clique nas estrelas para avaliar.";
-
-
-    /* Comentários */
-
-    const list =
+    const mensagem =
         document.getElementById(
-            "commentsList"
+            "mensagemVazia"
         );
 
 
-    if (!comments.length) {
+    if (lista.length === 0) {
 
-        list.innerHTML = `
+        container.innerHTML = "";
 
-            <p class="rating-hint">
-
-                Ainda não há comentários.
-                Seja a primeira pessoa a comentar! 😊
-
-            </p>
-
-        `;
+        mensagem.style.display = "block";
 
         return;
 
     }
 
 
-    list.innerHTML =
+    mensagem.style.display = "none";
 
-        comments
-            .slice()
-            .reverse()
-            .map(comment => `
 
-                <div class="comment">
+    container.innerHTML =
+        lista.map(receita => {
 
-                    <strong>
+            const media =
+                calcularMedia(receita.id);
 
-                        ${escapeHtml(
-                            comment.name
-                        )}
+            const quantidade =
+                (dados.avaliacoes[receita.id] || [])
+                    .length;
 
-                    </strong>
+            const favorito =
+                dados.favoritos.includes(
+                    receita.id
+                );
 
-                    <p>
 
-                        ${escapeHtml(
-                            comment.text
-                        )}
+            return `
 
-                    </p>
+                <article class="recipe-card">
 
-                </div>
+                    <div class="card-image-container">
 
-            `)
-            .join("");
+                        <img
+                            class="card-image"
+                            src="${receita.imagem}"
+                            alt="${receita.nome}"
+                        >
+
+                        <span class="tag card-tag">
+                            ${receita.categoria}
+                        </span>
+
+
+                        <button
+                            class="favorite-card ${favorito ? "favorite" : ""}"
+                            onclick="alternarFavorito(${receita.id})">
+
+                            ${favorito ? "♥" : "♡"}
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="card-content">
+
+                        <h3>
+                            ${receita.nome}
+                        </h3>
+
+                        <p>
+                            ${receita.descricao}
+                        </p>
+
+
+                        <div class="card-footer">
+
+                            <span class="rating">
+
+                                ${mostrarEstrelas(media)}
+
+                                <span>
+                                    ${
+                                        media
+                                            ? media.toFixed(1)
+                                            : "Sem nota"
+                                    }
+                                    ${
+                                        quantidade
+                                            ? `(${quantidade})`
+                                            : ""
+                                    }
+                                </span>
+
+                            </span>
+
+
+                            <span class="time">
+                                ⏱ ${receita.tempo}
+                            </span>
+
+                        </div>
+
+
+                        <button
+                            class="recipe-button"
+                            onclick="abrirReceita(${receita.id})">
+
+                            Ver receita →
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+            `;
+
+        }).join("");
 
 }
 
 
 /* ==========================================
-   SEGURANÇA DOS COMENTÁRIOS
+   FILTRAR RECEITAS
 ========================================== */
 
-function escapeHtml(text) {
+function filtrarReceitas() {
 
-    const div =
-        document.createElement("div");
+    const texto =
+        document
+            .getElementById("campoBusca")
+            .value
+            .toLowerCase();
 
-    div.textContent = text;
 
-    return div.innerHTML;
+    const filtradas =
+        receitas.filter(receita => {
+
+            const categoriaOK =
+                categoriaAtual === "Todas" ||
+                receita.categoria === categoriaAtual;
+
+
+            const buscaOK =
+                receita.nome
+                    .toLowerCase()
+                    .includes(texto) ||
+
+                receita.descricao
+                    .toLowerCase()
+                    .includes(texto);
+
+
+            return categoriaOK && buscaOK;
+
+        });
+
+
+    mostrarReceitas(filtradas);
 
 }
 
@@ -987,10 +500,10 @@ function escapeHtml(text) {
 ========================================== */
 
 document
-    .getElementById("searchInput")
+    .getElementById("campoBusca")
     .addEventListener(
         "input",
-        renderRecipes
+        filtrarReceitas
     );
 
 
@@ -999,68 +512,232 @@ document
 ========================================== */
 
 document
-    .getElementById("categoryList")
-    .addEventListener(
-        "click",
-        event => {
+    .querySelectorAll(".category")
+    .forEach(botao => {
 
-            const button =
-                event.target.closest(
-                    "[data-category]"
-                );
+        botao.addEventListener(
+            "click",
+            () => {
 
-
-            if (!button) return;
-
-
-            activeCategory =
-                button.dataset.category;
-
-
-            document
-                .querySelectorAll(
-                    ".category"
-                )
-                .forEach(item => {
-
-                    item.classList.toggle(
-                        "active",
-                        item === button
+                document
+                    .querySelectorAll(
+                        ".category"
+                    )
+                    .forEach(item =>
+                        item.classList.remove(
+                            "active"
+                        )
                     );
 
-                });
+
+                botao.classList.add("active");
 
 
-            renderRecipes();
+                categoriaAtual =
+                    botao.dataset.category;
 
-        }
-    );
+
+                filtrarReceitas();
+
+            }
+        );
+
+    });
+
+
+/* ==========================================
+   FAVORITOS
+========================================== */
+
+function alternarFavorito(id) {
+
+    const posicao =
+        dados.favoritos.indexOf(id);
+
+
+    if (posicao === -1) {
+
+        dados.favoritos.push(id);
+
+    } else {
+
+        dados.favoritos.splice(
+            posicao,
+            1
+        );
+
+    }
+
+
+    salvarDados();
+
+    atualizarContador();
+
+    filtrarReceitas();
+
+
+    if (receitaAtual === id) {
+
+        atualizarFavoritoModal();
+
+    }
+
+}
+
+
+/* ==========================================
+   CONTADOR DE FAVORITOS
+========================================== */
+
+function atualizarContador() {
+
+    document.getElementById(
+        "contadorFavoritos"
+    ).textContent =
+        dados.favoritos.length;
+
+}
+
+
+/* ==========================================
+   ABRIR RECEITA
+========================================== */
+
+function abrirReceita(id) {
+
+    const receita =
+        receitas.find(
+            item => item.id === id
+        );
+
+
+    if (!receita) {
+        return;
+    }
+
+
+    receitaAtual = id;
+
+
+    document.getElementById(
+        "modalImagem"
+    ).src = receita.imagem;
+
+
+    document.getElementById(
+        "modalImagem"
+    ).alt = receita.nome;
+
+
+    document.getElementById(
+        "modalTitulo"
+    ).textContent =
+        receita.nome;
+
+
+    document.getElementById(
+        "modalCategoria"
+    ).textContent =
+        receita.categoria;
+
+
+    document.getElementById(
+        "modalDescricao"
+    ).textContent =
+        receita.descricao;
+
+
+    document.getElementById(
+        "modalInformacoes"
+    ).innerHTML = `
+
+        <span>⏱ ${receita.tempo}</span>
+
+        <span>🍽️ ${receita.porcoes}</span>
+
+        <span>📊 ${receita.dificuldade}</span>
+
+    `;
+
+
+    document.getElementById(
+        "modalIngredientes"
+    ).innerHTML =
+        receita.ingredientes
+            .map(
+                item => `<li>${item}</li>`
+            )
+            .join("");
+
+
+    document.getElementById(
+        "modalPassos"
+    ).innerHTML =
+        receita.preparo
+            .map(
+                item => `<li>${item}</li>`
+            )
+            .join("");
+
+
+    document.getElementById(
+        "modal"
+    ).style.display = "flex";
+
+
+    document.body.style.overflow =
+        "hidden";
+
+
+    atualizarFavoritoModal();
+
+    mostrarAvaliacoes();
+
+}
 
 
 /* ==========================================
    FECHAR MODAL
 ========================================== */
 
+function fecharReceita() {
+
+    document.getElementById(
+        "modal"
+    ).style.display = "none";
+
+
+    document.body.style.overflow =
+        "auto";
+
+
+    receitaAtual = null;
+
+}
+
+
 document
-    .getElementById("modalClose")
+    .getElementById("fecharModal")
     .addEventListener(
         "click",
-        closeModal
+        fecharReceita
     );
 
 
+/* FECHAR CLICANDO FORA */
+
 document
-    .getElementById("modalBackdrop")
+    .getElementById("modal")
     .addEventListener(
         "click",
         event => {
 
             if (
                 event.target.id ===
-                "modalBackdrop"
+                "modal"
             ) {
 
-                closeModal();
+                fecharReceita();
 
             }
 
@@ -1068,23 +745,14 @@ document
     );
 
 
-/* ESC FECHA MODAL */
+/* FECHAR COM ESC */
 
 document.addEventListener(
     "keydown",
     event => {
 
-        if (
-            event.key === "Escape" &&
-            !document
-                .getElementById(
-                    "modalBackdrop"
-                )
-                .hidden
-        ) {
-
-            closeModal();
-
+        if (event.key === "Escape") {
+            fecharReceita();
         }
 
     }
@@ -1092,94 +760,141 @@ document.addEventListener(
 
 
 /* ==========================================
-   FAVORITO DENTRO DA RECEITA
+   FAVORITO DO MODAL
 ========================================== */
 
-document
-    .getElementById("modalFavorite")
-    .addEventListener(
-        "click",
-        () => {
+function atualizarFavoritoModal() {
 
-            if (activeRecipeId) {
+    /*
+       Não precisamos de outro botão no modal.
+       O favorito é controlado diretamente
+       pelos cards.
+    */
 
-                toggleFavorite(
-                    activeRecipeId
-                );
-
-            }
-
-        }
-    );
+}
 
 
 /* ==========================================
-   SISTEMA DE ESTRELAS
+   AVALIAÇÕES
 ========================================== */
 
 document
-    .getElementById("starPicker")
-    .addEventListener(
-        "click",
-        event => {
+    .querySelectorAll(
+        "#estrelas button"
+    )
+    .forEach(botao => {
 
-            const button =
-                event.target.closest(
-                    "[data-star]"
-                );
+        botao.addEventListener(
+            "click",
+            () => {
 
-
-            if (
-                !button ||
-                !activeRecipeId
-            ) return;
+                if (!receitaAtual) {
+                    return;
+                }
 
 
-            const rating =
+                const nota =
+                    Number(
+                        botao.dataset.star
+                    );
+
+
+                if (
+                    !dados.avaliacoes[
+                        receitaAtual
+                    ]
+                ) {
+
+                    dados.avaliacoes[
+                        receitaAtual
+                    ] = [];
+
+                }
+
+
+                dados.avaliacoes[
+                    receitaAtual
+                ].push(nota);
+
+
+                salvarDados();
+
+                mostrarAvaliacoes();
+
+                filtrarReceitas();
+
+            }
+        );
+
+    });
+
+
+/* ==========================================
+   MOSTRAR AVALIAÇÕES
+========================================== */
+
+function mostrarAvaliacoes() {
+
+    const avaliacoes =
+        dados.avaliacoes[
+            receitaAtual
+        ] || [];
+
+
+    const media =
+        calcularMedia(receitaAtual);
+
+
+    document
+        .querySelectorAll(
+            "#estrelas button"
+        )
+        .forEach(botao => {
+
+            const numero =
                 Number(
-                    button.dataset.star
+                    botao.dataset.star
                 );
 
 
-            const data =
-                loadData();
+            botao.classList.toggle(
+                "selected",
+                numero <= Math.round(media)
+            );
+
+        });
 
 
-            if (
-                !data.ratings[
-                    activeRecipeId
-                ]
-            ) {
-
-                data.ratings[
-                    activeRecipeId
-                ] = [];
-
-            }
+    const texto =
+        document.getElementById(
+            "textoAvaliacao"
+        );
 
 
-            data.ratings[
-                activeRecipeId
-            ].push(rating);
+    if (avaliacoes.length === 0) {
+
+        texto.textContent =
+            "Clique nas estrelas para avaliar.";
+
+    } else {
+
+        texto.textContent =
+            `Nota média: ${media.toFixed(1)} de 5 — ${avaliacoes.length} avaliação(ões).`;
+
+    }
 
 
-            saveData(data);
+    mostrarComentarios();
 
-
-            renderReviews();
-
-            renderRecipes();
-
-        }
-    );
+}
 
 
 /* ==========================================
-   SISTEMA DE COMENTÁRIOS
+   COMENTÁRIOS
 ========================================== */
 
 document
-    .getElementById("commentForm")
+    .getElementById("formComentario")
     .addEventListener(
         "submit",
         event => {
@@ -1187,80 +902,159 @@ document
             event.preventDefault();
 
 
-            if (!activeRecipeId)
+            if (!receitaAtual) {
                 return;
+            }
 
 
-            const nameInput =
-                document.getElementById(
-                    "commentName"
-                );
+            const nome =
+                document
+                    .getElementById(
+                        "nomeComentario"
+                    )
+                    .value
+                    .trim();
 
 
-            const textInput =
-                document.getElementById(
-                    "commentText"
-                );
+            const texto =
+                document
+                    .getElementById(
+                        "textoComentario"
+                    )
+                    .value
+                    .trim();
 
 
-            const name =
-                nameInput.value.trim();
-
-
-            const text =
-                textInput.value.trim();
-
-
-            if (
-                !name ||
-                !text
-            ) return;
-
-
-            const data =
-                loadData();
+            if (!nome || !texto) {
+                return;
+            }
 
 
             if (
-                !data.comments[
-                    activeRecipeId
+                !dados.comentarios[
+                    receitaAtual
                 ]
             ) {
 
-                data.comments[
-                    activeRecipeId
+                dados.comentarios[
+                    receitaAtual
                 ] = [];
 
             }
 
 
-            data.comments[
-                activeRecipeId
+            dados.comentarios[
+                receitaAtual
             ].push({
 
-                name: name,
+                nome: nome,
 
-                text: text,
-
-                date:
-                    new Date()
-                        .toISOString()
+                texto: texto
 
             });
 
 
-            saveData(data);
+            salvarDados();
 
 
-            nameInput.value = "";
+            document
+                .getElementById(
+                    "nomeComentario"
+                )
+                .value = "";
 
-            textInput.value = "";
+
+            document
+                .getElementById(
+                    "textoComentario"
+                )
+                .value = "";
 
 
-            renderReviews();
+            mostrarComentarios();
 
         }
     );
+
+
+/* ==========================================
+   MOSTRAR COMENTÁRIOS
+========================================== */
+
+function mostrarComentarios() {
+
+    const comentarios =
+        dados.comentarios[
+            receitaAtual
+        ] || [];
+
+
+    const container =
+        document.getElementById(
+            "listaComentarios"
+        );
+
+
+    if (comentarios.length === 0) {
+
+        container.innerHTML = `
+
+            <p style="color:#777;">
+                Ainda não existem comentários.
+                Seja o primeiro! 😊
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        comentarios
+            .slice()
+            .reverse()
+            .map(
+                comentario => `
+
+                    <div class="comment">
+
+                        <strong>
+                            ${escapar(
+                                comentario.nome
+                            )}
+                        </strong>
+
+                        <p>
+                            ${escapar(
+                                comentario.texto
+                            )}
+                        </p>
+
+                    </div>
+
+                `
+            )
+            .join("");
+
+}
+
+
+/* ==========================================
+   PROTEGER COMENTÁRIOS
+========================================== */
+
+function escapar(texto) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = texto;
+
+    return div.innerHTML;
+
+}
 
 
 /* ==========================================
@@ -1268,46 +1062,42 @@ document
 ========================================== */
 
 document
-    .getElementById("randomBtn")
+    .getElementById("btnSurpresa")
     .addEventListener(
         "click",
         () => {
 
-            const recipe =
-                recipes[
-                    Math.floor(
-                        Math.random() *
-                        recipes.length
-                    )
-                ];
+            const indice =
+                Math.floor(
+                    Math.random() *
+                    receitas.length
+                );
 
 
-            openModal(recipe.id);
+            abrirReceita(
+                receitas[indice].id
+            );
 
         }
     );
 
 
 /* ==========================================
-   BOTÃO DE FAVORITOS
+   BOTÃO FAVORITOS
 ========================================== */
 
 document
-    .getElementById("favoritesBtn")
+    .getElementById("btnFavoritos")
     .addEventListener(
         "click",
         () => {
 
-            const data =
-                loadData();
-
-
             if (
-                !data.favorites.length
+                dados.favoritos.length === 0
             ) {
 
                 alert(
-                    "Você ainda não favoritou nenhuma receita! ❤️"
+                    "Você ainda não possui receitas favoritas. ❤️"
                 );
 
                 return;
@@ -1315,178 +1105,17 @@ document
             }
 
 
-            const favoriteRecipes =
-                recipes.filter(
-                    recipe =>
-                        data.favorites
+            const favoritas =
+                receitas.filter(
+                    receita =>
+                        dados.favoritos
                             .includes(
-                                recipe.id
+                                receita.id
                             )
                 );
 
 
-            document.getElementById(
-                "searchInput"
-            ).value = "";
-
-
-            activeCategory =
-                "Todas";
-
-
-            document
-                .querySelectorAll(
-                    ".category"
-                )
-                .forEach(button => {
-
-                    button.classList.toggle(
-                        "active",
-                        button.dataset.category ===
-                            "Todas"
-                    );
-
-                });
-
-
-            const grid =
-                document.getElementById(
-                    "recipeGrid"
-                );
-
-
-            grid.innerHTML =
-                favoriteRecipes
-                    .map(recipe => {
-
-                        const average =
-                            averageRating(
-                                recipe.id
-                            );
-
-
-                        return `
-
-                            <article
-                                class="recipe-card">
-
-                                <div
-                                    class="card-image-wrap">
-
-                                    <img
-                                        class="card-image"
-                                        src="${recipe.image}"
-                                        alt="${recipe.name}"
-                                    >
-
-                                    <span
-                                        class="pill card-pill">
-
-                                        ${recipe.category}
-
-                                    </span>
-
-
-                                    <button
-                                        class="favorite-card is-favorite"
-                                        data-favorite="${recipe.id}">
-
-                                        ♥
-                                        
-                                    </button>
-
-                                </div>
-
-
-                                <div
-                                    class="card-body">
-
-                                    <h3>
-                                        ${recipe.name}
-                                    </h3>
-
-                                    <p>
-                                        ${recipe.description}
-                                    </p>
-
-
-                                    <div
-                                        class="card-footer">
-
-                                        <span
-                                            class="rating">
-
-                                            ${stars(average)}
-
-                                            <small>
-                                                ${average
-                                                    ? average.toFixed(1)
-                                                    : "Sem nota"}
-                                            </small>
-
-                                        </span>
-
-
-                                        <span
-                                            class="time">
-
-                                            ⏱ ${recipe.time}
-
-                                        </span>
-
-                                    </div>
-
-
-                                    <button
-                                        class="view-recipe"
-                                        data-open="${recipe.id}">
-
-                                        Ver receita →
-
-                                    </button>
-
-                                </div>
-
-                            </article>
-
-                        `;
-
-                    })
-                    .join("");
-
-
-            document
-                .querySelectorAll(
-                    "[data-open]"
-                )
-                .forEach(button => {
-
-                    button.addEventListener(
-                        "click",
-                        () =>
-                            openModal(
-                                button.dataset.open
-                            )
-                    );
-
-                });
-
-
-            document
-                .querySelectorAll(
-                    "[data-favorite]"
-                )
-                .forEach(button => {
-
-                    button.addEventListener(
-                        "click",
-                        () =>
-                            toggleFavorite(
-                                button.dataset.favorite
-                            )
-                    );
-
-                });
+            mostrarReceitas(favoritas);
 
 
             document
@@ -1502,7 +1131,9 @@ document
 
 
 /* ==========================================
-   INICIAR SITE
+   INICIALIZAÇÃO
 ========================================== */
 
-renderRecipes();
+mostrarReceitas();
+
+atualizarContador();
