@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sabor & Afeto - Receitas</title>
+    <title>Sabor & Afeto | Receitas</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -14,11 +15,11 @@
     <!-- CABEÇALHO -->
     <header class="header">
 
-        <div class="logo">
-            🍋 <span>Sabor <b>&</b> Afeto</span>
-        </div>
+        <a href="#inicio" class="logo">
+            🍋 Sabor <span>&</span> Afeto
+        </a>
 
-        <nav>
+        <nav class="menu">
             <a href="#inicio">Início</a>
             <a href="#receitas">Receitas</a>
             <a href="#categorias">Categorias</a>
@@ -33,9 +34,9 @@
     </header>
 
 
-    <!-- INÍCIO -->
     <main>
 
+        <!-- HERO -->
         <section id="inicio" class="hero">
 
             <div class="hero-text">
@@ -50,9 +51,8 @@
                 </h1>
 
                 <p class="description">
-                    Descubra receitas deliciosas, fáceis e especiais
-                    para transformar qualquer refeição em um momento
-                    inesquecível.
+                    Encontre receitas deliciosas para o café da manhã,
+                    almoço, jantar, sobremesa e muito mais.
                 </p>
 
                 <div class="hero-buttons">
@@ -61,9 +61,7 @@
                         Ver receitas →
                     </a>
 
-                    <button
-                        id="btnSurpresa"
-                        class="button secondary">
+                    <button id="btnSurpresa" class="button secondary">
                         ✨ Receita surpresa
                     </button>
 
@@ -77,8 +75,8 @@
                 <div class="circle"></div>
 
                 <img
-                    src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80"
-                    alt="Prato saudável">
+                    src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=900&q=80"
+                    alt="Comida saudável">
 
                 <div class="sticker">
                     Feito<br>
@@ -103,34 +101,28 @@
 
             <div class="category-buttons">
 
-                <button
-                    class="category active"
-                    data-category="Todas">
+                <button class="category active" data-category="Todas">
                     🍽️ Todas
                 </button>
 
-                <button
-                    class="category"
-                    data-category="Doces">
+                <button class="category" data-category="Doces">
                     🍰 Doces
                 </button>
 
-                <button
-                    class="category"
-                    data-category="Massas">
+                <button class="category" data-category="Massas">
                     🍝 Massas
                 </button>
 
-                <button
-                    class="category"
-                    data-category="Saudáveis">
+                <button class="category" data-category="Saudáveis">
                     🥗 Saudáveis
                 </button>
 
-                <button
-                    class="category"
-                    data-category="Lanches">
+                <button class="category" data-category="Lanches">
                     🥪 Lanches
+                </button>
+
+                <button class="category" data-category="Almoço">
+                    🍛 Almoço
                 </button>
 
             </div>
@@ -144,44 +136,41 @@
             <div class="recipes-header">
 
                 <div>
-
                     <p class="subtitle">
                         NOSSA COLEÇÃO
                     </p>
 
                     <h2>
-                        Receitas favoritas
+                        Receitas deliciosas
                     </h2>
-
                 </div>
 
 
                 <div class="search">
 
-                    🔍
+                    <span>🔍</span>
 
                     <input
-                        type="text"
+                        type="search"
                         id="campoBusca"
-                        placeholder="Buscar receita...">
+                        placeholder="Buscar receita..."
+                        autocomplete="off">
 
                 </div>
 
             </div>
 
 
-            <div
-                id="listaReceitas"
-                class="recipe-grid">
+            <div id="listaReceitas" class="recipe-grid"></div>
+
+
+            <div id="mensagemVazia" class="empty" style="display: none;">
+                <div>😕</div>
+                <h3>Receita não encontrada</h3>
+                <p>
+                    Tente pesquisar por outro nome ou categoria.
+                </p>
             </div>
-
-
-            <p
-                id="mensagemVazia"
-                class="empty"
-                style="display: none;">
-                Nenhuma receita encontrada. 😕
-            </p>
 
         </section>
 
@@ -200,12 +189,12 @@
                 </p>
 
                 <h3>
-                    Leia a receita inteira antes de começar!
+                    Organize os ingredientes antes de começar!
                 </h3>
 
                 <p>
-                    Separe todos os ingredientes e utensílios
-                    antes de iniciar o preparo.
+                    Separar os ingredientes e materiais antes do preparo
+                    torna a receita muito mais fácil.
                 </p>
 
             </div>
@@ -227,15 +216,14 @@
                 </p>
 
                 <h2>
-                    Comida boa fica ainda melhor
-                    quando é compartilhada.
+                    Cozinhar também é uma forma de demonstrar carinho.
                 </h2>
 
                 <p>
                     O Sabor & Afeto foi criado para reunir receitas
-                    simples, deliciosas e especiais. Aqui você pode
-                    descobrir receitas, favoritar suas preferidas,
-                    avaliar pratos e deixar comentários.
+                    simples, gostosas e fáceis de preparar. Escolha
+                    uma receita, confira os ingredientes, materiais e
+                    siga o passo a passo.
                 </p>
 
             </div>
@@ -249,7 +237,7 @@
     <footer>
 
         <div class="logo">
-            🍋 Sabor <b>&</b> Afeto
+            🍋 Sabor <span>&</span> Afeto
         </div>
 
         <p>
@@ -259,19 +247,18 @@
     </footer>
 
 
-    <!-- MODAL -->
-    <div
-        id="modal"
-        class="modal-background"
-        style="display: none;">
+    <!-- MODAL DA RECEITA -->
+    <div id="modal" class="modal-background">
 
         <div class="modal">
 
             <button
                 id="fecharModal"
-                class="close">
+                class="close"
+                aria-label="Fechar">
                 ×
             </button>
+
 
             <img
                 id="modalImagem"
@@ -279,11 +266,10 @@
                 src=""
                 alt="">
 
+
             <div class="modal-content">
 
-                <span
-                    id="modalCategoria"
-                    class="tag">
+                <span id="modalCategoria" class="tag">
                 </span>
 
                 <h2 id="modalTitulo"></h2>
@@ -291,46 +277,58 @@
                 <p id="modalDescricao"></p>
 
 
-                <div
-                    id="modalInformacoes"
-                    class="information">
+                <div id="modalInformacoes" class="information">
                 </div>
 
 
-                <div class="recipe-details">
+                <div class="recipe-sections">
 
-                    <div>
+                    <!-- INGREDIENTES -->
+                    <section class="recipe-box">
 
-                        <h3>🛒 Ingredientes</h3>
+                        <h3>
+                            🛒 Ingredientes
+                        </h3>
 
-                        <ul id="modalIngredientes">
-                        </ul>
+                        <ul id="modalIngredientes"></ul>
 
-                    </div>
+                    </section>
 
 
-                    <div>
+                    <!-- MATERIAIS -->
+                    <section class="recipe-box">
 
-                        <h3>👩‍🍳 Modo de preparo</h3>
+                        <h3>
+                            🥣 Materiais necessários
+                        </h3>
 
-                        <ol id="modalPassos">
-                        </ol>
+                        <ul id="modalMateriais"></ul>
 
-                    </div>
+                    </section>
+
+
+                    <!-- MODO DE PREPARO -->
+                    <section class="recipe-box preparation">
+
+                        <h3>
+                            👩‍🍳 Modo de preparo
+                        </h3>
+
+                        <ol id="modalPassos"></ol>
+
+                    </section>
 
                 </div>
 
 
                 <!-- AVALIAÇÃO -->
-                <div class="reviews">
+                <section class="reviews">
 
                     <h3>
                         ⭐ Avalie esta receita
                     </h3>
 
-                    <div
-                        id="estrelas"
-                        class="stars">
+                    <div id="estrelas" class="stars">
 
                         <button data-star="1">★</button>
                         <button data-star="2">★</button>
@@ -347,7 +345,7 @@
 
                     <!-- COMENTÁRIOS -->
                     <h3>
-                        💬 Comentários
+                        💬 Deixe um comentário
                     </h3>
 
                     <form id="formComentario">
@@ -359,28 +357,26 @@
                             maxlength="30"
                             required>
 
-                        <input
+                        <textarea
                             id="textoComentario"
-                            type="text"
                             placeholder="Escreva seu comentário..."
-                            maxlength="200"
-                            required>
+                            maxlength="300"
+                            rows="3"
+                            required></textarea>
 
                         <button
                             type="submit"
                             class="button primary">
-                            Enviar
+                            Enviar comentário
                         </button>
 
                     </form>
 
 
-                    <div
-                        id="listaComentarios"
-                        class="comments">
+                    <div id="listaComentarios" class="comments">
                     </div>
 
-                </div>
+                </section>
 
             </div>
 
@@ -392,4 +388,5 @@
     <script src="scrip.js"></script>
 
 </body>
+
 </html>
