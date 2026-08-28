@@ -4,74 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sabor & Afeto | Receitas</title>
+    <title>Sabor & Afeto - Receitas</title>
 
-    <!-- Fonte do Google -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-
-    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- =========================
-         CABEÇALHO
-    ========================== -->
-    <header class="topbar">
+    <!-- CABEÇALHO -->
+    <header class="header">
 
-        <a href="#" class="logo">
-            <span class="logo-icon">🍋</span>
-            <span>Sabor <strong>&</strong> Afeto</span>
-        </a>
+        <div class="logo">
+            🍋 <span>Sabor <b>&</b> Afeto</span>
+        </div>
 
         <nav>
+            <a href="#inicio">Início</a>
             <a href="#receitas">Receitas</a>
             <a href="#categorias">Categorias</a>
             <a href="#sobre">Sobre</a>
         </nav>
 
-        <button class="favorite-nav" id="favoritesBtn">
-            ♡ Favoritos
-            <span id="favoriteCount">0</span>
+        <button id="btnFavoritos" class="favorite-button">
+            ❤️ Favoritos
+            <span id="contadorFavoritos">0</span>
         </button>
 
     </header>
 
 
+    <!-- INÍCIO -->
     <main>
 
-        <!-- =========================
-             HERO
-        ========================== -->
-        <section class="hero">
+        <section id="inicio" class="hero">
 
-            <div class="hero-copy">
+            <div class="hero-text">
 
-                <span class="eyebrow">
+                <p class="subtitle">
                     COZINHE • COMPARTILHE • APROVEITE
-                </span>
+                </p>
 
                 <h1>
                     Receitas que têm
-                    <br>
-                    <em>gosto de carinho.</em>
+                    <span>gosto de carinho.</span>
                 </h1>
 
-                <p>
-                    Ideias simples e deliciosas para transformar
-                    qualquer refeição em um momento especial.
+                <p class="description">
+                    Descubra receitas deliciosas, fáceis e especiais
+                    para transformar qualquer refeição em um momento
+                    inesquecível.
                 </p>
 
-                <div class="hero-actions">
+                <div class="hero-buttons">
 
-                    <a href="#receitas" class="btn btn-primary">
-                        Explorar receitas →
+                    <a href="#receitas" class="button primary">
+                        Ver receitas →
                     </a>
 
-                    <button class="btn btn-light" id="randomBtn">
+                    <button
+                        id="btnSurpresa"
+                        class="button secondary">
                         ✨ Receita surpresa
                     </button>
 
@@ -80,115 +72,17 @@
             </div>
 
 
-            <div class="hero-art">
+            <div class="hero-image">
 
-                <div class="blob"></div>
+                <div class="circle"></div>
 
-                <img<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Óptica do Olho Humano</title>
-    
-    <!-- Fontes Google -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="./style.css">
-</head>
-<body>
+                <img
+                    src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80"
+                    alt="Prato saudável">
 
-    <!-- NAV -->
-    <nav class="nav">
-        <div class="nav-logo">OPTICA // OLHO</div>
-        <ul class="nav-links">
-            <li><a href="#anatomia">Anatomia</a></li>
-            <li><a href="#fisica">Física</a></li>
-            <li><a href="#simulador">Simulador</a></li>
-            <li><a href="#deficiencias">Deficiências</a></li>
-        </ul>
-    </nav>
-
-    <!-- HERO -->
-    <header class="hero">
-        <div class="hero-content">
-            <p class="hero-eyebrow">Física Médica &amp; Biologia</p>
-            <h1 class="hero-title">A Óptica do <em>Olho Humano</em></h1>
-            <p class="hero-desc">Explore como a luz interage com o sistema ocular humano através de modelos ópticos e simulações interativas em tempo real.</p>
-            
-            <div class="hero-stats">
-                <div class="stat">
-                    src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85"
-                    alt="Comida saudável"
-                >
-
-                <span class="sticker sticker-one">
-                    feito
-                    <br>
-                    com amor
-                </span>
-
-                <span class="sticker sticker-two">
-                    yum!
-                </span>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             CATEGORIAS
-        ========================== -->
-        <section class="category-section" id="categorias">
-
-            <div class="section-heading">
-
-                <div>
-                    <span class="eyebrow">
-                        ENCONTRE SUA INSPIRAÇÃO
-                    </span>
-
-                    <h2>
-                        O que você quer cozinhar?
-                    </h2>
-                </div>
-
-
-                <div class="category-list" id="categoryList">
-
-                    <button
-                        class="category active"
-                        data-category="Todas">
-                        🍽️ Todas
-                    </button>
-
-                    <button
-                        class="category"
-                        data-category="Doces">
-                        🍰 Doces
-                    </button>
-
-                    <button
-                        class="category"
-                        data-category="Massas">
-                        🍝 Massas
-                    </button>
-
-                    <button
-                        class="category"
-                        data-category="Saudáveis">
-                        🥗 Saudáveis
-                    </button>
-
-                    <button
-                        class="category"
-                        data-category="Lanches">
-                        🥪 Lanches
-                    </button>
-
+                <div class="sticker">
+                    Feito<br>
+                    com amor ❤️
                 </div>
 
             </div>
@@ -196,18 +90,64 @@
         </section>
 
 
-        <!-- =========================
-             RECEITAS
-        ========================== -->
-        <section class="recipes-section" id="receitas">
+        <!-- CATEGORIAS -->
+        <section id="categorias" class="categories">
 
-            <div class="toolbar">
+            <p class="subtitle">
+                ENCONTRE SUA INSPIRAÇÃO
+            </p>
+
+            <h2>
+                O que você quer cozinhar?
+            </h2>
+
+            <div class="category-buttons">
+
+                <button
+                    class="category active"
+                    data-category="Todas">
+                    🍽️ Todas
+                </button>
+
+                <button
+                    class="category"
+                    data-category="Doces">
+                    🍰 Doces
+                </button>
+
+                <button
+                    class="category"
+                    data-category="Massas">
+                    🍝 Massas
+                </button>
+
+                <button
+                    class="category"
+                    data-category="Saudáveis">
+                    🥗 Saudáveis
+                </button>
+
+                <button
+                    class="category"
+                    data-category="Lanches">
+                    🥪 Lanches
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- RECEITAS -->
+        <section id="receitas" class="recipes">
+
+            <div class="recipes-header">
 
                 <div>
 
-                    <span class="eyebrow">
+                    <p class="subtitle">
                         NOSSA COLEÇÃO
-                    </span>
+                    </p>
 
                     <h2>
                         Receitas favoritas
@@ -216,41 +156,38 @@
                 </div>
 
 
-                <label class="search-box">
+                <div class="search">
 
-                    <span>⌕</span>
+                    🔍
 
                     <input
-                        type="search"
-                        id="searchInput"
-                        placeholder="Buscar receita..."
-                    >
+                        type="text"
+                        id="campoBusca"
+                        placeholder="Buscar receita...">
 
-                </label>
+                </div>
 
             </div>
 
 
-            <!-- As receitas serão colocadas pelo JavaScript -->
             <div
-                class="recipe-grid"
-                id="recipeGrid">
+                id="listaReceitas"
+                class="recipe-grid">
             </div>
+
 
             <p
-                class="empty-state"
-                id="emptyState"
-                hidden>
-                Nenhuma receita encontrada. 🌿
+                id="mensagemVazia"
+                class="empty"
+                style="display: none;">
+                Nenhuma receita encontrada. 😕
             </p>
 
         </section>
 
 
-        <!-- =========================
-             DICA
-        ========================== -->
-        <section class="tip-banner">
+        <!-- DICA -->
+        <section class="tip">
 
             <div class="tip-icon">
                 💡
@@ -258,17 +195,17 @@
 
             <div>
 
-                <span class="eyebrow">
+                <p class="subtitle">
                     DICA DO DIA
-                </span>
+                </p>
 
                 <h3>
-                    Leia a receita inteira antes de começar.
+                    Leia a receita inteira antes de começar!
                 </h3>
 
                 <p>
-                    Separar os ingredientes e utensílios primeiro
-                    deixa o preparo muito mais tranquilo.
+                    Separe todos os ingredientes e utensílios
+                    antes de iniciar o preparo.
                 </p>
 
             </div>
@@ -276,21 +213,18 @@
         </section>
 
 
-        <!-- =========================
-             SOBRE
-        ========================== -->
-        <section class="about" id="sobre">
+        <!-- SOBRE -->
+        <section id="sobre" class="about">
 
-            <div class="about-illustration">
+            <div class="about-icon">
                 🥣
-                <span>♡</span>
             </div>
 
             <div>
 
-                <span class="eyebrow">
+                <p class="subtitle">
                     SOBRE O SABOR & AFETO
-                </span>
+                </p>
 
                 <h2>
                     Comida boa fica ainda melhor
@@ -298,10 +232,10 @@
                 </h2>
 
                 <p>
-                    Este cantinho foi criado para reunir receitas
-                    práticas, afetivas e gostosas. Avalie suas
-                    favoritas e deixe um comentário para ajudar
-                    outras pessoas a cozinhar também!
+                    O Sabor & Afeto foi criado para reunir receitas
+                    simples, deliciosas e especiais. Aqui você pode
+                    descobrir receitas, favoritar suas preferidas,
+                    avaliar pratos e deixar comentários.
                 </p>
 
             </div>
@@ -311,139 +245,75 @@
     </main>
 
 
-    <!-- =========================
-         RODAPÉ
-    ========================== -->
+    <!-- RODAPÉ -->
     <footer>
 
         <div class="logo">
-            <span class="logo-icon">🍋</span>
-            <span>Sabor <strong>&</strong> Afeto</span>
+            🍋 Sabor <b>&</b> Afeto
         </div>
 
         <p>
-            Feito para quem acredita que toda receita
-            pode virar uma boa memória. ♡
+            Feito com carinho ❤️
         </p>
 
     </footer>
 
 
-    <!-- =========================<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Óptica do Olho Humano</title>
-    
-    <!-- Fontes Google -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="./style.css">
-</head>
-<body>
-
-    <!-- NAV -->
-    <nav class="nav">
-        <div class="nav-logo">OPTICA // OLHO</div>
-        <ul class="nav-links">
-            <li><a href="#anatomia">Anatomia</a></li>
-            <li><a href="#fisica">Física</a></li>
-            <li><a href="#simulador">Simulador</a></li>
-            <li><a href="#deficiencias">Deficiências</a></li>
-        </ul>
-    </nav>
-
-    <!-- HERO -->
-    <header class="hero">
-        <div class="hero-content">
-            <p class="hero-eyebrow">Física Médica &amp; Biologia</p>
-            <h1 class="hero-title">A Óptica do <em>Olho Humano</em></h1>
-            <p class="hero-desc">Explore como a luz interage com o sistema ocular humano através de modelos ópticos e simulações interativas em tempo real.</p>
-            
-            <div class="hero-stats">
-                <div class="stat">
-         MODAL DA RECEITA
-    ========================== -->
+    <!-- MODAL -->
     <div
-        class="modal-backdrop"
-        id="modalBackdrop"
-        hidden>
+        id="modal"
+        class="modal-background"
+        style="display: none;">
 
-        <article class="modal">
+        <div class="modal">
 
             <button
-                class="modal-close"
-                id="modalClose">
+                id="fecharModal"
+                class="close">
                 ×
             </button>
 
-
             <img
+                id="modalImagem"
                 class="modal-image"
-                id="modalImage"
                 src=""
-                alt=""
-            >
-
+                alt="">
 
             <div class="modal-content">
 
-                <div class="modal-top">
+                <span
+                    id="modalCategoria"
+                    class="tag">
+                </span>
 
-                    <span
-                        class="pill"
-                        id="modalCategory">
-                    </span>
+                <h2 id="modalTitulo"></h2>
 
-                    <button
-                        class="heart-btn"
-                        id="modalFavorite">
-                        ♡
-                    </button>
-
-                </div>
-
-
-                <h2 id="modalTitle"></h2>
-
-                <p
-                    class="modal-description"
-                    id="modalDescription">
-                </p>
+                <p id="modalDescricao"></p>
 
 
                 <div
-                    class="recipe-meta"
-                    id="modalMeta">
+                    id="modalInformacoes"
+                    class="information">
                 </div>
 
 
-                <div class="modal-columns">
+                <div class="recipe-details">
 
-                    <!-- INGREDIENTES -->
                     <div>
 
-                        <h3>
-                            🛒 Ingredientes
-                        </h3>
+                        <h3>🛒 Ingredientes</h3>
 
-                        <ul id="modalIngredients">
+                        <ul id="modalIngredientes">
                         </ul>
 
                     </div>
 
 
-                    <!-- PREPARO -->
                     <div>
 
-                        <h3>
-                            👩‍🍳 Modo de preparo
-                        </h3>
+                        <h3>👩‍🍳 Modo de preparo</h3>
 
-                        <ol id="modalSteps">
+                        <ol id="modalPassos">
                         </ol>
 
                     </div>
@@ -451,18 +321,16 @@
                 </div>
 
 
-                <!-- =========================
-                     AVALIAÇÃO
-                ========================== -->
-                <section class="review-area">
+                <!-- AVALIAÇÃO -->
+                <div class="reviews">
 
                     <h3>
                         ⭐ Avalie esta receita
                     </h3>
 
                     <div
-                        class="star-picker"
-                        id="starPicker">
+                        id="estrelas"
+                        class="stars">
 
                         <button data-star="1">★</button>
                         <button data-star="2">★</button>
@@ -472,65 +340,55 @@
 
                     </div>
 
-                    <p
-                        class="rating-hint"
-                        id="ratingHint">
+                    <p id="textoAvaliacao">
                         Clique nas estrelas para avaliar.
                     </p>
 
 
-                    <!-- =========================
-                         COMENTÁRIOS
-                    ========================== -->
-
+                    <!-- COMENTÁRIOS -->
                     <h3>
                         💬 Comentários
                     </h3>
 
-                    <form id="commentForm">
+                    <form id="formComentario">
 
-                        <div class="comment-form-row">
+                        <input
+                            id="nomeComentario"
+                            type="text"
+                            placeholder="Seu nome"
+                            maxlength="30"
+                            required>
 
-                            <input
-                                id="commentName"
-                                maxlength="30"
-                                placeholder="Seu nome"
-                                required
-                            >
+                        <input
+                            id="textoComentario"
+                            type="text"
+                            placeholder="Escreva seu comentário..."
+                            maxlength="200"
+                            required>
 
-                            <input
-                                id="commentText"
-                                maxlength="180"
-                                placeholder="O que você achou da receita?"
-                                required
-                            >
-
-                            <button
-                                class="btn btn-primary"
-                                type="submit">
-                                Comentar
-                            </button>
-
-                        </div>
+                        <button
+                            type="submit"
+                            class="button primary">
+                            Enviar
+                        </button>
 
                     </form>
 
 
                     <div
-                        class="comments-list"
-                        id="commentsList">
+                        id="listaComentarios"
+                        class="comments">
                     </div>
 
-                </section>
+                </div>
 
             </div>
 
-        </article>
+        </div>
 
     </div>
 
 
-    <!-- JavaScript -->
     <script src="scrip.js"></script>
 
 </body>
