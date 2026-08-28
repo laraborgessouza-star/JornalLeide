@@ -1,219 +1,1508 @@
-/* ============================================================
-   ÓPTICA DO OLHO — script.js
-   Lógica do simulador interativo e renderizações no Canvas
-   ============================================================ */
+/* ==========================================
+   SABOR & AFETO
+   JAVASCRIPT DO SITE
 
-document.addEventListener('DOMContentLoaded', () => {
-    initHeroCanvas();
-    initSimulador();
-});
+   Este arquivo controla:
+   - Receitas
+   - Busca
+   - Categorias
+   - Favoritos
+   - Avaliações
+   - Comentários
+   - Modal
+   - Receita surpresa
 
-/* ----- CANVAS ILUSTRATIVO DO HERO ----- */
-function initHeroCanvas() {
-    const canvas = document.getElementById('heroCanvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+   Os dados ficam salvos no navegador
+   através do localStorage.
+========================================== */
 
-    function drawHeroEye() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        const centerX = 250;
-        const centerY = 200;
+/* ==========================================
+   BANCO DE RECEITAS
+========================================== */
 
-        // Esclera
-        ctx.beginPath();
-        ctx.arc(centerX, centerY, 120, 0, Math.PI * 2);
-        ctx.fillStyle = '#163252';
-        ctx.strokeStyle = '#3a7fcb';
-        ctx.lineWidth = 3;
-        ctx.fill();
-        ctx.stroke();
+const recipes = [
 
-        // Córnea
-        ctx.beginPath();
-        ctx.arc(centerX - 90, centerY, 60, -Math.PI / 3, Math.PI / 3);
-        ctx.strokeStyle = '#e8a030';
-        ctx.lineWidth = 4;
-        ctx.stroke();
+    {
+        id: "lasanha",
 
-        // Cristalino
-        ctx.beginPath();
-        ctx.ellipse(centerX - 50, centerY, 12, 35, 0, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(200, 223, 244, 0.3)';
-        ctx.strokeStyle = '#c8dff4';
-        ctx.lineWidth = 2;
-        ctx.fill();
-        ctx.stroke();
+        name: "Lasanha de forno",
 
-        // Feixes de Luz
-        ctx.lineWidth = 2;
+        category: "Massas",
 
-        // Superior
-        ctx.beginPath();
-        ctx.moveTo(30, centerY - 60);
-        ctx.lineTo(centerX - 50, centerY - 25);
-        ctx.lineTo(centerX + 120, centerY);
-        ctx.strokeStyle = 'rgba(232, 160, 48, 0.7)';
-        ctx.stroke();
+        image:
+            "https://images.unsplash.com/photo-1574894709920-11b28e7367a5?auto=format&fit=crop&w=900&q=85",
 
-        // Central
-        ctx.beginPath();
-        ctx.moveTo(30, centerY);
-        ctx.lineTo(centerX + 120, centerY);
-        ctx.strokeStyle = 'rgba(232, 160, 48, 0.9)';
-        ctx.stroke();
+        description:
+            "Camadas cremosas, molho bem temperado e muito queijo para um almoço especial.",
 
-        // Inferior
-        ctx.beginPath();
-        ctx.moveTo(30, centerY + 60);
-        ctx.lineTo(centerX - 50, centerY + 25);
-        ctx.lineTo(centerX + 120, centerY);
-        ctx.strokeStyle = 'rgba(232, 160, 48, 0.7)';
-        ctx.stroke();
+        time: "55 min",
 
-        // Ponto Focal na Retina
-        ctx.beginPath();
-        ctx.arc(centerX + 120, centerY, 5, 0, Math.PI * 2);
-        ctx.fillStyle = '#e8a030';
-        ctx.fill();
+        difficulty: "Médio",
+
+        servings: "6 porções",
+
+        ingredients: [
+
+            "500 g de massa para lasanha",
+
+            "500 g de carne moída",
+
+            "2 xícaras de molho de tomate",
+
+            "300 g de muçarela",
+
+            "200 g de presunto",
+
+            "1 cebola picada",
+
+            "Sal, alho e orégano a gosto"
+
+        ],
+
+        steps: [
+
+            "Refogue a cebola e o alho, acrescente a carne e tempere.",
+
+            "Junte o molho de tomate e cozinhe por 10 minutos.",
+
+            "Monte camadas de molho, massa, carne, presunto e queijo.",
+
+            "Finalize com muçarela e orégano.",
+
+            "Asse a 200 °C por cerca de 30 minutos e sirva quente."
+
+        ]
+    },
+
+
+    {
+        id: "bolo-cenoura",
+
+        name: "Bolo de cenoura",
+
+        category: "Doces",
+
+        image:
+            "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=900&q=85",
+
+        description:
+            "Clássico fofinho com cobertura de chocolate brilhante e irresistível.",
+
+        time: "45 min",
+
+        difficulty: "Fácil",
+
+        servings: "10 fatias",
+
+        ingredients: [
+
+            "3 cenouras médias",
+
+            "3 ovos",
+
+            "1 xícara de óleo",
+
+            "2 xícaras de açúcar",
+
+            "2½ xícaras de farinha de trigo",
+
+            "1 colher de sopa de fermento",
+
+            "4 colheres de chocolate em pó",
+
+            "1 colher de manteiga"
+
+        ],
+
+        steps: [
+
+            "Bata cenoura, ovos e óleo no liquidificador.",
+
+            "Misture com açúcar e farinha em uma tigela.",
+
+            "Acrescente o fermento delicadamente.",
+
+            "Asse em forma untada a 180 °C por aproximadamente 35 minutos.",
+
+            "Prepare a cobertura de chocolate e espalhe sobre o bolo."
+
+        ]
+    },
+
+
+    {
+        id: "panqueca",
+
+        name: "Panqueca colorida",
+
+        category: "Saudáveis",
+
+        image:
+            "https://images.unsplash.com/photo-1506084868230-bb9d95c24759?auto=format&fit=crop&w=900&q=85",
+
+        description:
+            "Panquecas leves e bonitas para começar o dia com energia e sabor.",
+
+        time: "20 min",
+
+        difficulty: "Fácil",
+
+        servings: "4 porções",
+
+        ingredients: [
+
+            "1 banana madura",
+
+            "2 ovos",
+
+            "½ xícara de aveia",
+
+            "1 colher de chá de canela",
+
+            "Frutas para servir",
+
+            "Iogurte natural a gosto",
+
+            "Mel a gosto"
+
+        ],
+
+        steps: [
+
+            "Amasse a banana e misture com os ovos.",
+
+            "Adicione a aveia e a canela.",
+
+            "Aqueça uma frigideira antiaderente.",
+
+            "Coloque pequenas porções da massa e doure dos dois lados.",
+
+            "Sirva com frutas, iogurte e um fio de mel."
+
+        ]
+    },
+
+
+    {
+        id: "brownie",
+
+        name: "Brownie de chocolate",
+
+        category: "Doces",
+
+        image:
+            "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=85",
+
+        description:
+            "Brownie intenso, macio por dentro e com aquela casquinha delicada por cima.",
+
+        time: "35 min",
+
+        difficulty: "Fácil",
+
+        servings: "12 pedaços",
+
+        ingredients: [
+
+            "200 g de chocolate meio amargo",
+
+            "120 g de manteiga",
+
+            "3 ovos",
+
+            "1 xícara de açúcar",
+
+            "¾ xícara de farinha",
+
+            "3 colheres de chocolate em pó",
+
+            "1 pitada de sal"
+
+        ],
+
+        steps: [
+
+            "Derreta o chocolate com a manteiga.",
+
+            "Misture os ovos e o açúcar.",
+
+            "Junte o chocolate derretido.",
+
+            "Adicione farinha, chocolate em pó e sal.",
+
+            "Asse a 180 °C por aproximadamente 20 a 25 minutos."
+
+        ]
+    },
+
+
+    {
+        id: "sanduiche",
+
+        name: "Sanduíche caprese",
+
+        category: "Lanches",
+
+        image:
+            "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=900&q=85",
+
+        description:
+            "Uma combinação fresca de tomate, queijo e manjericão em pão crocante.",
+
+        time: "10 min",
+
+        difficulty: "Muito fácil",
+
+        servings: "2 porções",
+
+        ingredients: [
+
+            "2 pães ciabatta ou franceses",
+
+            "1 tomate grande",
+
+            "150 g de muçarela",
+
+            "Folhas de manjericão",
+
+            "Azeite",
+
+            "Sal e pimenta",
+
+            "Creme balsâmico opcional"
+
+        ],
+
+        steps: [
+
+            "Corte os pães ao meio e aqueça levemente.",
+
+            "Fatie o tomate e a muçarela.",
+
+            "Monte alternando tomate, queijo e manjericão.",
+
+            "Tempere com sal, pimenta e azeite.",
+
+            "Finalize com creme balsâmico e sirva."
+
+        ]
+    },
+
+
+    {
+        id: "risoto",
+
+        name: "Risoto cremoso",
+
+        category: "Massas",
+
+        image:
+            "https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&fit=crop&w=900&q=85",
+
+        description:
+            "Risoto cremoso e reconfortante, perfeito para um jantar caprichado.",
+
+        time: "40 min",
+
+        difficulty: "Médio",
+
+        servings: "4 porções",
+
+        ingredients: [
+
+            "1½ xícara de arroz arbóreo",
+
+            "1 litro de caldo de legumes",
+
+            "1 cebola pequena",
+
+            "½ xícara de vinho branco opcional",
+
+            "2 colheres de manteiga",
+
+            "½ xícara de parmesão ralado",
+
+            "Sal e pimenta"
+
+        ],
+
+        steps: [
+
+            "Mantenha o caldo aquecido em uma panela.",
+
+            "Refogue a cebola em metade da manteiga.",
+
+            "Adicione o arroz e mexa por 2 minutos.",
+
+            "Acrescente o caldo aos poucos.",
+
+            "Mexa até o arroz ficar cremoso e al dente.",
+
+            "Finalize com manteiga e parmesão."
+
+        ]
     }
 
-    drawHeroEye();
+];
+
+
+/* ==========================================
+   VARIÁVEIS
+========================================== */
+
+const storageKey = "saborAfetoData";
+
+let activeRecipeId = null;
+
+let activeCategory = "Todas";
+
+
+/* ==========================================
+   CARREGAR DADOS
+========================================== */
+
+function loadData() {
+
+    try {
+
+        return JSON.parse(
+            localStorage.getItem(storageKey)
+        ) || {
+
+            ratings: {},
+
+            comments: {},
+
+            favorites: []
+
+        };
+
+    } catch {
+
+        return {
+
+            ratings: {},
+
+            comments: {},
+
+            favorites: []
+
+        };
+
+    }
 }
 
-/* ----- SIMULADOR ÓPTICO ----- */
-let lensPowerInput, eyeLengthInput;
-let lensPowerVal, eyeLengthVal, simStatus;
-let eyeCanvas, ctxSim;
 
-function initSimulador() {
-    eyeCanvas = document.getElementById('eyeCanvas');
-    if (!eyeCanvas) return;
-    ctxSim = eyeCanvas.getContext('2d');
+/* ==========================================
+   SALVAR DADOS
+========================================== */
 
-    lensPowerInput = document.getElementById('lensPower');
-    eyeLengthInput = document.getElementById('eyeLength');
-    lensPowerVal = document.getElementById('lensPowerVal');
-    eyeLengthVal = document.getElementById('eyeLengthVal');
-    simStatus = document.getElementById('simStatus');
+function saveData(data) {
 
-    if (lensPowerInput) lensPowerInput.addEventListener('input', updateSim);
-    if (eyeLengthInput) eyeLengthInput.addEventListener('input', updateSim);
+    localStorage.setItem(
+        storageKey,
+        JSON.stringify(data)
+    );
 
-    updateSim();
 }
 
-function updateSim() {
-    if (!lensPowerInput || !eyeLengthInput || !eyeCanvas) return;
 
-    const power = parseInt(lensPowerInput.value, 10);
-    const length = parseInt(eyeLengthInput.value, 10);
+/* ==========================================
+   CALCULAR NOTA
+========================================== */
 
-    if (lensPowerVal) lensPowerVal.textContent = `${power} D`;
-    if (eyeLengthVal) eyeLengthVal.textContent = `${length} mm`;
+function averageRating(recipeId) {
 
-    renderEyeSimulation(power, length);
+    const data = loadData();
+
+    const ratings =
+        data.ratings[recipeId] || [];
+
+    if (!ratings.length) {
+
+        return 0;
+
+    }
+
+    return (
+        ratings.reduce(
+            (total, rating) =>
+                total + rating,
+            0
+        ) / ratings.length
+    );
 }
 
-function renderEyeSimulation(power, length) {
-    const w = eyeCanvas.width;
-    const h = eyeCanvas.height;
-    const centerY = h / 2;
 
-    ctxSim.clearRect(0, 0, w, h);
+/* ==========================================
+   DESENHAR ESTRELAS
+========================================== */
 
-    const eyeStartX = 150;
-    // Mapeia comprimento visual no canvas (18mm a 30mm)
-    const eyeRadius = (length / 24) * 110;
-    const retinaX = eyeStartX + (eyeRadius * 1.8);
+function stars(value) {
 
-    // Desenhar Estrutura Ocular
-    ctxSim.beginPath();
-    ctxSim.arc(eyeStartX + eyeRadius, centerY, eyeRadius, 0, Math.PI * 2);
-    ctxSim.fillStyle = '#ffffff';
-    ctxSim.strokeStyle = '#2061a0';
-    ctxSim.lineWidth = 3;
-    ctxSim.fill();
-    ctxSim.stroke();
+    const rounded =
+        Math.round(value);
 
-    // Retina (Linha no fundo)
-    ctxSim.beginPath();
-    ctxSim.arc(eyeStartX + eyeRadius, centerY, eyeRadius - 2, -Math.PI / 2.5, Math.PI / 2.5);
-    ctxSim.strokeStyle = '#a02020';
-    ctxSim.lineWidth = 5;
-    ctxSim.stroke();
+    return "★★★★★"
+        .split("")
+        .map(
+            (star, index) =>
+                index < rounded
+                    ? "★"
+                    : "☆"
+        )
+        .join("");
 
-    // Cristalino (Espessura varia com o 'Power')
-    const lensThickness = (power / 20) * 10;
-    const lensX = eyeStartX + 30;
+}
 
-    ctxSim.beginPath();
-    ctxSim.ellipse(lensX, centerY, lensThickness, 40, 0, 0, Math.PI * 2);
-    ctxSim.fillStyle = 'rgba(200, 223, 244, 0.6)';
-    ctxSim.strokeStyle = '#2061a0';
-    ctxSim.lineWidth = 2;
-    ctxSim.fill();
-    ctxSim.stroke();
 
-    // Cálculo do Ponto Focal no Canvas
-    const idealFocalDist = retinaX - lensX;
-    const focalShift = (20 - power) * 5 + (length - 24) * 2;
-    const focalPointX = lensX + idealFocalDist - focalShift;
+/* ==========================================
+   MOSTRAR RECEITAS
+========================================== */
 
-    // Desenhar Feixes de Luz
-    drawRay(30, centerY - 35, lensX, centerY - 25, focalPointX, centerY);
-    drawRay(30, centerY, lensX, centerY, focalPointX, centerY);
-    drawRay(30, centerY + 35, lensX, centerY + 25, focalPointX, centerY);
+function renderRecipes() {
 
-    // Ponto de Foco Luminoso
-    ctxSim.beginPath();
-    ctxSim.arc(focalPointX, centerY, 4, 0, Math.PI * 2);
-    ctxSim.fillStyle = '#e8a030';
-    ctxSim.fill();
+    const search =
+        document
+            .getElementById("searchInput")
+            .value
+            .toLowerCase()
+            .trim();
 
-    // Atualizar Mensagem do Estado
-    if (simStatus) {
-        const diff = Math.abs(focalPointX - retinaX);
-        if (diff < 6) {
-            simStatus.textContent = "Foco ideal na retina (Emetropia)";
-            simStatus.className = "sim-status";
-        } else if (focalPointX < retinaX) {
-            simStatus.textContent = "Imagem focada ANTES da retina (Miopia)";
-            simStatus.className = "sim-status warn";
-        } else {
-            simStatus.textContent = "Imagem focada DEPOIS da retina (Hipermetropia)";
-            simStatus.className = "sim-status error";
+
+    const data = loadData();
+
+    const grid =
+        document.getElementById("recipeGrid");
+
+    const empty =
+        document.getElementById("emptyState");
+
+
+    const filtered =
+        recipes.filter(recipe => {
+
+            const matchesCategory =
+                activeCategory === "Todas" ||
+                recipe.category === activeCategory;
+
+
+            const matchesSearch =
+                `${recipe.name}
+                ${recipe.category}
+                ${recipe.description}`
+                    .toLowerCase()
+                    .includes(search);
+
+
+            return (
+                matchesCategory &&
+                matchesSearch
+            );
+
+        });
+
+
+    grid.innerHTML =
+        filtered
+            .map(recipe => {
+
+                const average =
+                    averageRating(recipe.id);
+
+                const favorite =
+                    data.favorites
+                        .includes(recipe.id);
+
+
+                const ratings =
+                    data.ratings[recipe.id] || [];
+
+
+                const ratingText =
+                    average
+                        ? `${average.toFixed(1)} (${ratings.length})`
+                        : "Sem avaliações";
+
+
+                return `
+
+                    <article class="recipe-card">
+
+                        <div class="card-image-wrap">
+
+                            <img
+                                class="card-image"
+                                src="${recipe.image}"
+                                alt="${recipe.name}"
+                                loading="lazy"
+                            >
+
+                            <span class="pill card-pill">
+                                ${recipe.category}
+                            </span>
+
+
+                            <button
+                                class="favorite-card ${favorite ? "is-favorite" : ""}"
+                                data-favorite="${recipe.id}"
+                                aria-label="Favoritar">
+
+                                ${favorite ? "♥" : "♡"}
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="card-body">
+
+                            <h3>
+                                ${recipe.name}
+                            </h3>
+
+                            <p>
+                                ${recipe.description}
+                            </p>
+
+
+                            <div class="card-footer">
+
+                                <span class="rating">
+
+                                    ${stars(average)}
+
+                                    <small>
+                                        ${ratingText}
+                                    </small>
+
+                                </span>
+
+
+                                <span class="time">
+
+                                    ⏱ ${recipe.time}
+
+                                </span>
+
+                            </div>
+
+
+                            <button
+                                class="view-recipe"
+                                data-open="${recipe.id}">
+
+                                Ver receita →
+
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                `;
+
+            })
+            .join("");
+
+
+    empty.hidden =
+        filtered.length !== 0;
+
+
+    /* Botões para abrir receita */
+
+    document
+        .querySelectorAll("[data-open]")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () =>
+                    openModal(
+                        button.dataset.open
+                    )
+            );
+
+        });
+
+
+    /* Botões favoritos */
+
+    document
+        .querySelectorAll("[data-favorite]")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () =>
+                    toggleFavorite(
+                        button.dataset.favorite
+                    )
+            );
+
+        });
+
+
+    document
+        .getElementById("favoriteCount")
+        .textContent =
+        data.favorites.length;
+
+}
+
+
+/* ==========================================
+   FAVORITOS
+========================================== */
+
+function toggleFavorite(id) {
+
+    const data = loadData();
+
+
+    if (
+        data.favorites.includes(id)
+    ) {
+
+        data.favorites =
+            data.favorites.filter(
+                item => item !== id
+            );
+
+    } else {
+
+        data.favorites.push(id);
+
+    }
+
+
+    saveData(data);
+
+    renderRecipes();
+
+
+    if (
+        activeRecipeId === id
+    ) {
+
+        updateModalFavorite();
+
+    }
+
+}
+
+
+/* ==========================================
+   ATUALIZAR FAVORITO DO MODAL
+========================================== */
+
+function updateModalFavorite() {
+
+    const data = loadData();
+
+    const button =
+        document.getElementById(
+            "modalFavorite"
+        );
+
+
+    const favorite =
+        data.favorites.includes(
+            activeRecipeId
+        );
+
+
+    button.classList.toggle(
+        "is-favorite",
+        favorite
+    );
+
+
+    button.textContent =
+        favorite
+            ? "♥"
+            : "♡";
+
+}
+
+
+/* ==========================================
+   ABRIR MODAL
+========================================== */
+
+function openModal(id) {
+
+    const recipe =
+        recipes.find(
+            item => item.id === id
+        );
+
+
+    if (!recipe) return;
+
+
+    activeRecipeId = id;
+
+
+    document.getElementById(
+        "modalImage"
+    ).src = recipe.image;
+
+
+    document.getElementById(
+        "modalImage"
+    ).alt = recipe.name;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent = recipe.name;
+
+
+    document.getElementById(
+        "modalCategory"
+    ).textContent =
+        recipe.category;
+
+
+    document.getElementById(
+        "modalDescription"
+    ).textContent =
+        recipe.description;
+
+
+    document.getElementById(
+        "modalMeta"
+    ).innerHTML = `
+
+        <span>
+            ⏱ ${recipe.time}
+        </span>
+
+        <span>
+            🍴 ${recipe.servings}
+        </span>
+
+        <span>
+            📈 ${recipe.difficulty}
+        </span>
+
+    `;
+
+
+    document.getElementById(
+        "modalIngredients"
+    ).innerHTML =
+        recipe.ingredients
+            .map(
+                ingredient =>
+                    `<li>${ingredient}</li>`
+            )
+            .join("");
+
+
+    document.getElementById(
+        "modalSteps"
+    ).innerHTML =
+        recipe.steps
+            .map(
+                step =>
+                    `<li>${step}</li>`
+            )
+            .join("");
+
+
+    document.getElementById(
+        "modalBackdrop"
+    ).hidden = false;
+
+
+    document.body.style.overflow =
+        "hidden";
+
+
+    updateModalFavorite();
+
+    renderReviews();
+
+}
+
+
+/* ==========================================
+   FECHAR MODAL
+========================================== */
+
+function closeModal() {
+
+    document.getElementById(
+        "modalBackdrop"
+    ).hidden = true;
+
+
+    document.body.style.overflow =
+        "";
+
+
+    activeRecipeId = null;
+
+}
+
+
+/* ==========================================
+   MOSTRAR AVALIAÇÕES E COMENTÁRIOS
+========================================== */
+
+function renderReviews() {
+
+    const data = loadData();
+
+
+    const ratings =
+        data.ratings[activeRecipeId] || [];
+
+
+    const comments =
+        data.comments[activeRecipeId] || [];
+
+
+    const average =
+        ratings.length
+            ? ratings.reduce(
+                (a, b) => a + b,
+                0
+            ) / ratings.length
+            : 0;
+
+
+    /* Atualiza estrelas */
+
+    document
+        .querySelectorAll(
+            "#starPicker button"
+        )
+        .forEach(button => {
+
+            button.classList.toggle(
+                "active",
+
+                Number(button.dataset.star)
+                    <= Math.round(average)
+            );
+
+        });
+
+
+    /* Texto da avaliação */
+
+    document.getElementById(
+        "ratingHint"
+    ).textContent =
+
+        ratings.length
+
+            ? `Nota média: ${average.toFixed(1)} de 5 (${ratings.length} avaliação${ratings.length === 1 ? "" : "ões"}).`
+
+            : "Clique nas estrelas para avaliar.";
+
+
+    /* Comentários */
+
+    const list =
+        document.getElementById(
+            "commentsList"
+        );
+
+
+    if (!comments.length) {
+
+        list.innerHTML = `
+
+            <p class="rating-hint">
+
+                Ainda não há comentários.
+                Seja a primeira pessoa a comentar! 😊
+
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+
+        comments
+            .slice()
+            .reverse()
+            .map(comment => `
+
+                <div class="comment">
+
+                    <strong>
+
+                        ${escapeHtml(
+                            comment.name
+                        )}
+
+                    </strong>
+
+                    <p>
+
+                        ${escapeHtml(
+                            comment.text
+                        )}
+
+                    </p>
+
+                </div>
+
+            `)
+            .join("");
+
+}
+
+
+/* ==========================================
+   SEGURANÇA DOS COMENTÁRIOS
+========================================== */
+
+function escapeHtml(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+
+}
+
+
+/* ==========================================
+   BUSCA
+========================================== */
+
+document
+    .getElementById("searchInput")
+    .addEventListener(
+        "input",
+        renderRecipes
+    );
+
+
+/* ==========================================
+   CATEGORIAS
+========================================== */
+
+document
+    .getElementById("categoryList")
+    .addEventListener(
+        "click",
+        event => {
+
+            const button =
+                event.target.closest(
+                    "[data-category]"
+                );
+
+
+            if (!button) return;
+
+
+            activeCategory =
+                button.dataset.category;
+
+
+            document
+                .querySelectorAll(
+                    ".category"
+                )
+                .forEach(item => {
+
+                    item.classList.toggle(
+                        "active",
+                        item === button
+                    );
+
+                });
+
+
+            renderRecipes();
+
         }
+    );
+
+
+/* ==========================================
+   FECHAR MODAL
+========================================== */
+
+document
+    .getElementById("modalClose")
+    .addEventListener(
+        "click",
+        closeModal
+    );
+
+
+document
+    .getElementById("modalBackdrop")
+    .addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target.id ===
+                "modalBackdrop"
+            ) {
+
+                closeModal();
+
+            }
+
+        }
+    );
+
+
+/* ESC FECHA MODAL */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Escape" &&
+            !document
+                .getElementById(
+                    "modalBackdrop"
+                )
+                .hidden
+        ) {
+
+            closeModal();
+
+        }
+
     }
-}
+);
 
-function drawRay(x1, y1, x2, y2, x3, y3) {
-    ctxSim.beginPath();
-    ctxSim.moveTo(x1, y1);
-    ctxSim.lineTo(x2, y2);
-    ctxSim.lineTo(x3, y3);
-    ctxSim.strokeStyle = 'rgba(232, 160, 48, 0.85)';
-    ctxSim.lineWidth = 2;
-    ctxSim.stroke();
-}
 
-/* ----- CONTROLES EXTERNOS E PRESETS ----- */
-window.applyPreset = function(type) {
-    if (!lensPowerInput || !eyeLengthInput) return;
+/* ==========================================
+   FAVORITO DENTRO DA RECEITA
+========================================== */
 
-    if (type === 'emetropia') {
-        lensPowerInput.value = 20;
-        eyeLengthInput.value = 24;
-    } else if (type === 'miopia') {
-        lensPowerInput.value = 26;
-        eyeLengthInput.value = 28;
-    } else if (type === 'hipermetropia') {
-        lensPowerInput.value = 14;
-        eyeLengthInput.value = 20;
-    }
-    updateSim();
-};
+document
+    .getElementById("modalFavorite")
+    .addEventListener(
+        "click",
+        () => {
 
-window.resetSim = function() {
-    window.applyPreset('emetropia');
-};
+            if (activeRecipeId) {
+
+                toggleFavorite(
+                    activeRecipeId
+                );
+
+            }
+
+        }
+    );
+
+
+/* ==========================================
+   SISTEMA DE ESTRELAS
+========================================== */
+
+document
+    .getElementById("starPicker")
+    .addEventListener(
+        "click",
+        event => {
+
+            const button =
+                event.target.closest(
+                    "[data-star]"
+                );
+
+
+            if (
+                !button ||
+                !activeRecipeId
+            ) return;
+
+
+            const rating =
+                Number(
+                    button.dataset.star
+                );
+
+
+            const data =
+                loadData();
+
+
+            if (
+                !data.ratings[
+                    activeRecipeId
+                ]
+            ) {
+
+                data.ratings[
+                    activeRecipeId
+                ] = [];
+
+            }
+
+
+            data.ratings[
+                activeRecipeId
+            ].push(rating);
+
+
+            saveData(data);
+
+
+            renderReviews();
+
+            renderRecipes();
+
+        }
+    );
+
+
+/* ==========================================
+   SISTEMA DE COMENTÁRIOS
+========================================== */
+
+document
+    .getElementById("commentForm")
+    .addEventListener(
+        "submit",
+        event => {
+
+            event.preventDefault();
+
+
+            if (!activeRecipeId)
+                return;
+
+
+            const nameInput =
+                document.getElementById(
+                    "commentName"
+                );
+
+
+            const textInput =
+                document.getElementById(
+                    "commentText"
+                );
+
+
+            const name =
+                nameInput.value.trim();
+
+
+            const text =
+                textInput.value.trim();
+
+
+            if (
+                !name ||
+                !text
+            ) return;
+
+
+            const data =
+                loadData();
+
+
+            if (
+                !data.comments[
+                    activeRecipeId
+                ]
+            ) {
+
+                data.comments[
+                    activeRecipeId
+                ] = [];
+
+            }
+
+
+            data.comments[
+                activeRecipeId
+            ].push({
+
+                name: name,
+
+                text: text,
+
+                date:
+                    new Date()
+                        .toISOString()
+
+            });
+
+
+            saveData(data);
+
+
+            nameInput.value = "";
+
+            textInput.value = "";
+
+
+            renderReviews();
+
+        }
+    );
+
+
+/* ==========================================
+   RECEITA SURPRESA
+========================================== */
+
+document
+    .getElementById("randomBtn")
+    .addEventListener(
+        "click",
+        () => {
+
+            const recipe =
+                recipes[
+                    Math.floor(
+                        Math.random() *
+                        recipes.length
+                    )
+                ];
+
+
+            openModal(recipe.id);
+
+        }
+    );
+
+
+/* ==========================================
+   BOTÃO DE FAVORITOS
+========================================== */
+
+document
+    .getElementById("favoritesBtn")
+    .addEventListener(
+        "click",
+        () => {
+
+            const data =
+                loadData();
+
+
+            if (
+                !data.favorites.length
+            ) {
+
+                alert(
+                    "Você ainda não favoritou nenhuma receita! ❤️"
+                );
+
+                return;
+
+            }
+
+
+            const favoriteRecipes =
+                recipes.filter(
+                    recipe =>
+                        data.favorites
+                            .includes(
+                                recipe.id
+                            )
+                );
+
+
+            document.getElementById(
+                "searchInput"
+            ).value = "";
+
+
+            activeCategory =
+                "Todas";
+
+
+            document
+                .querySelectorAll(
+                    ".category"
+                )
+                .forEach(button => {
+
+                    button.classList.toggle(
+                        "active",
+                        button.dataset.category ===
+                            "Todas"
+                    );
+
+                });
+
+
+            const grid =
+                document.getElementById(
+                    "recipeGrid"
+                );
+
+
+            grid.innerHTML =
+                favoriteRecipes
+                    .map(recipe => {
+
+                        const average =
+                            averageRating(
+                                recipe.id
+                            );
+
+
+                        return `
+
+                            <article
+                                class="recipe-card">
+
+                                <div
+                                    class="card-image-wrap">
+
+                                    <img
+                                        class="card-image"
+                                        src="${recipe.image}"
+                                        alt="${recipe.name}"
+                                    >
+
+                                    <span
+                                        class="pill card-pill">
+
+                                        ${recipe.category}
+
+                                    </span>
+
+
+                                    <button
+                                        class="favorite-card is-favorite"
+                                        data-favorite="${recipe.id}">
+
+                                        ♥
+                                        
+                                    </button>
+
+                                </div>
+
+
+                                <div
+                                    class="card-body">
+
+                                    <h3>
+                                        ${recipe.name}
+                                    </h3>
+
+                                    <p>
+                                        ${recipe.description}
+                                    </p>
+
+
+                                    <div
+                                        class="card-footer">
+
+                                        <span
+                                            class="rating">
+
+                                            ${stars(average)}
+
+                                            <small>
+                                                ${average
+                                                    ? average.toFixed(1)
+                                                    : "Sem nota"}
+                                            </small>
+
+                                        </span>
+
+
+                                        <span
+                                            class="time">
+
+                                            ⏱ ${recipe.time}
+
+                                        </span>
+
+                                    </div>
+
+
+                                    <button
+                                        class="view-recipe"
+                                        data-open="${recipe.id}">
+
+                                        Ver receita →
+
+                                    </button>
+
+                                </div>
+
+                            </article>
+
+                        `;
+
+                    })
+                    .join("");
+
+
+            document
+                .querySelectorAll(
+                    "[data-open]"
+                )
+                .forEach(button => {
+
+                    button.addEventListener(
+                        "click",
+                        () =>
+                            openModal(
+                                button.dataset.open
+                            )
+                    );
+
+                });
+
+
+            document
+                .querySelectorAll(
+                    "[data-favorite]"
+                )
+                .forEach(button => {
+
+                    button.addEventListener(
+                        "click",
+                        () =>
+                            toggleFavorite(
+                                button.dataset.favorite
+                            )
+                    );
+
+                });
+
+
+            document
+                .getElementById(
+                    "receitas"
+                )
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+        }
+    );
+
+
+/* ==========================================
+   INICIAR SITE
+========================================== */
+
+renderRecipes();
