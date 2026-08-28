@@ -1,6 +1,6 @@
-/* ================================
-   CONFIGURAÇÕES GERAIS
-================================ */
+/* ==========================================
+   RESET
+========================================== */
 
 * {
     margin: 0;
@@ -14,13 +14,14 @@ html {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #fffaf2;
+    background: #fffaf2;
     color: #29382f;
     line-height: 1.5;
 }
 
 button,
-input {
+input,
+textarea {
     font-family: inherit;
 }
 
@@ -30,19 +31,20 @@ button {
 
 a {
     text-decoration: none;
-    color: inherit;
 }
 
 
-/* ================================
-   CABEÇALHO
-================================ */
+/* ==========================================
+   HEADER
+========================================== */
 
 .header {
     width: 100%;
     min-height: 75px;
+
     padding: 15px 7%;
-    background-color: #fffaf2;
+
+    background: #fffaf2;
 
     display: flex;
     align-items: center;
@@ -50,72 +52,72 @@ a {
 
     position: sticky;
     top: 0;
-    z-index: 50;
+
+    z-index: 100;
 
     border-bottom: 1px solid #eee7d9;
 }
 
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    color: #365943;
 
     font-size: 20px;
     font-weight: bold;
-    color: #365943;
 }
 
-.logo b {
+.logo span {
     color: #d79e36;
 }
 
-.header nav {
+.menu {
     display: flex;
-    align-items: center;
     gap: 30px;
 }
 
-.header nav a {
+.menu a {
     color: #69766e;
     font-size: 15px;
+
     transition: 0.2s;
 }
 
-.header nav a:hover {
+.menu a:hover {
     color: #365943;
 }
 
-.favorite-button {
-    border: 1px solid #ddd8cd;
-    background-color: #ffffff;
-    color: #365943;
 
+.favorite-button {
     padding: 10px 16px;
+
+    border: 1px solid #ddd8cd;
+
     border-radius: 30px;
+
+    background: white;
+
+    color: #365943;
 
     transition: 0.2s;
 }
 
 .favorite-button:hover {
-    background-color: #e9f0e6;
-}
-
-.favorite-button span {
-    font-weight: bold;
-    margin-left: 4px;
+    background: #e9f0e6;
 }
 
 
-/* ================================
+/* ==========================================
    HERO
-================================ */
+========================================== */
 
 .hero {
     min-height: 570px;
+
     padding: 70px 9%;
 
     display: grid;
+
     grid-template-columns: 1fr 1fr;
+
     gap: 50px;
 
     align-items: center;
@@ -123,46 +125,58 @@ a {
 
 .subtitle {
     color: #557b62;
+
     font-size: 12px;
+
     font-weight: bold;
+
     letter-spacing: 2px;
 }
 
 .hero h1 {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(45px, 6vw, 80px);
-    line-height: 1.05;
+    max-width: 700px;
 
     margin: 20px 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(45px, 6vw, 80px);
+
+    line-height: 1.05;
 }
 
 .hero h1 span {
     color: #557b62;
+
     font-style: italic;
 }
 
 .description {
     max-width: 550px;
+
     color: #6f7973;
+
     font-size: 17px;
+
     line-height: 1.7;
 }
 
 .hero-buttons {
     display: flex;
-    align-items: center;
+
     gap: 12px;
 
     margin-top: 30px;
+
     flex-wrap: wrap;
 }
 
 .button {
     display: inline-block;
 
-    border: none;
-
     padding: 14px 21px;
+
+    border: none;
 
     border-radius: 30px;
 
@@ -172,60 +186,64 @@ a {
 }
 
 .primary {
-    background-color: #557b62;
-    color: #ffffff;
+    background: #557b62;
+
+    color: white;
 }
 
 .primary:hover {
-    background-color: #3e634b;
+    background: #3e634b;
 }
 
 .secondary {
-    background-color: #ffffff;
+    background: white;
+
     color: #365943;
 
     border: 1px solid #e2ded5;
 }
 
 .secondary:hover {
-    background-color: #eef3eb;
+    background: #eef3eb;
 }
 
 
-/* ================================
-   IMAGEM PRINCIPAL
-================================ */
+/* ==========================================
+   HERO IMAGE
+========================================== */
 
 .hero-image {
     height: 430px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
 }
 
-.hero-image .circle {
+.circle {
     width: 380px;
     height: 380px;
 
+    position: absolute;
+
     border-radius: 50%;
 
-    background-color: #e4eee2;
-
-    position: absolute;
+    background: #e4eee2;
 }
 
 .hero-image img {
     width: 390px;
     height: 390px;
 
+    position: relative;
+
     object-fit: cover;
 
     border-radius: 50%;
-
-    position: relative;
 
     box-shadow: 0 20px 50px rgba(40, 60, 45, 0.15);
 }
@@ -235,91 +253,95 @@ a {
     height: 100px;
 
     position: absolute;
+
     left: 5%;
     top: 15%;
 
-    border-radius: 50%;
-
-    background-color: #f4cf68;
-
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     text-align: center;
 
+    border-radius: 50%;
+
+    background: #f4cf68;
+
     font-family: Georgia, "Times New Roman", serif;
+
     font-weight: bold;
 
     transform: rotate(-10deg);
 }
 
 
-/* ================================
+/* ==========================================
    CATEGORIAS
-================================ */
+========================================== */
 
 .categories {
-    padding: 50px 9%;
+    padding: 60px 9%;
 }
 
 .categories h2,
 .recipes h2,
 .about h2 {
+    margin: 10px 0 25px;
+
     font-family: Georgia, "Times New Roman", serif;
 
     font-size: 42px;
-
-    margin: 10px 0 25px;
 }
 
 .category-buttons {
     display: flex;
-    align-items: center;
+
     gap: 10px;
 
     flex-wrap: wrap;
 }
 
 .category {
-    background-color: #ffffff;
+    padding: 12px 18px;
 
     border: 1px solid #e2ded5;
 
-    padding: 12px 18px;
-
     border-radius: 30px;
+
+    background: white;
 
     color: #66736b;
 
     transition: 0.2s;
 }
 
-.category:hover {
-    background-color: #557b62;
-    color: #ffffff;
-    border-color: #557b62;
-}
-
+.category:hover,
 .category.active {
-    background-color: #557b62;
-    color: #ffffff;
+    background: #557b62;
+
     border-color: #557b62;
+
+    color: white;
 }
 
 
-/* ================================
+/* ==========================================
    RECEITAS
-================================ */
+========================================== */
 
 .recipes {
-    background-color: #f4f0e6;
     padding: 65px 9%;
+
+    background: #f4f0e6;
 }
 
 .recipes-header {
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     gap: 20px;
@@ -328,15 +350,17 @@ a {
 }
 
 .search {
-    width: 300px;
+    width: 320px;
 
     display: flex;
+
     align-items: center;
-    gap: 8px;
+
+    gap: 10px;
 
     padding: 12px 16px;
 
-    background-color: #ffffff;
+    background: white;
 
     border: 1px solid #e0dbd0;
 
@@ -347,17 +371,18 @@ a {
     width: 100%;
 
     border: none;
+
     outline: none;
 
-    background-color: transparent;
+    background: transparent;
 
     font-size: 14px;
 }
 
 
-/* ================================
-   GRID DE RECEITAS
-================================ */
+/* ==========================================
+   GRID
+========================================== */
 
 .recipe-grid {
     display: grid;
@@ -368,20 +393,20 @@ a {
 }
 
 
-/* ================================
+/* ==========================================
    CARD
-================================ */
+========================================== */
 
 .recipe-card {
-    background-color: #ffffff;
+    overflow: hidden;
+
+    background: white;
 
     border-radius: 22px;
 
-    overflow: hidden;
-
     box-shadow: 0 8px 25px rgba(30, 50, 35, 0.07);
 
-    transition: transform 0.25s ease;
+    transition: 0.25s;
 }
 
 .recipe-card:hover {
@@ -389,8 +414,6 @@ a {
 }
 
 .card-image-container {
-    width: 100%;
-
     position: relative;
 }
 
@@ -398,21 +421,21 @@ a {
     width: 100%;
     height: 220px;
 
-    object-fit: cover;
-
     display: block;
+
+    object-fit: cover;
 }
 
 .tag {
     display: inline-block;
 
-    background-color: #e5efe2;
-
-    color: #365943;
-
     padding: 6px 10px;
 
     border-radius: 20px;
+
+    background: #e5efe2;
+
+    color: #365943;
 
     font-size: 12px;
 
@@ -427,8 +450,8 @@ a {
 }
 
 .favorite-card {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
 
     position: absolute;
 
@@ -439,21 +462,15 @@ a {
 
     border-radius: 50%;
 
-    background-color: rgba(255, 255, 255, 0.9);
-
-    font-size: 22px;
+    background: rgba(255, 255, 255, 0.92);
 
     color: #557b62;
 
-    transition: 0.2s;
-}
-
-.favorite-card:hover {
-    transform: scale(1.08);
+    font-size: 23px;
 }
 
 .favorite-card.favorite {
-    color: #dc7564;
+    color: #d96767;
 }
 
 .card-content {
@@ -461,19 +478,17 @@ a {
 }
 
 .card-content h3 {
+    margin: 8px 0;
+
     font-family: Georgia, "Times New Roman", serif;
 
     font-size: 24px;
-
-    margin: 8px 0;
 }
 
 .card-content p {
-    color: #737d76;
-
-    line-height: 1.5;
-
     min-height: 50px;
+
+    color: #737d76;
 }
 
 .card-footer {
@@ -498,8 +513,6 @@ a {
     color: #778079;
 
     font-size: 13px;
-
-    margin-left: 5px;
 }
 
 .time {
@@ -515,13 +528,13 @@ a {
 
     margin-top: 15px;
 
-    border: none;
-
     padding: 12px;
+
+    border: none;
 
     border-radius: 12px;
 
-    background-color: #e6efe3;
+    background: #e6efe3;
 
     color: #365943;
 
@@ -531,21 +544,38 @@ a {
 }
 
 .recipe-button:hover {
-    background-color: #d7e5d4;
+    background: #d7e5d4;
 }
+
+
+/* ==========================================
+   SEM RESULTADO
+========================================== */
 
 .empty {
+    padding: 60px 20px;
+
     text-align: center;
 
-    color: #777777;
+    color: #777;
+}
 
-    padding: 50px 20px;
+.empty div {
+    font-size: 50px;
+
+    margin-bottom: 10px;
+}
+
+.empty h3 {
+    font-size: 22px;
+
+    margin-bottom: 5px;
 }
 
 
-/* ================================
+/* ==========================================
    DICA
-================================ */
+========================================== */
 
 .tip {
     margin: 70px 9%;
@@ -558,11 +588,11 @@ a {
 
     gap: 20px;
 
-    background-color: #557b62;
-
-    color: #ffffff;
-
     border-radius: 25px;
+
+    background: #557b62;
+
+    color: white;
 }
 
 .tip-icon {
@@ -572,12 +602,14 @@ a {
     flex-shrink: 0;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     border-radius: 50%;
 
-    background-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.15);
 
     font-size: 28px;
 }
@@ -587,21 +619,17 @@ a {
 }
 
 .tip h3 {
+    margin: 5px 0 8px;
+
     font-family: Georgia, "Times New Roman", serif;
 
     font-size: 24px;
-
-    margin: 5px 0 8px;
-}
-
-.tip p:last-child {
-    opacity: 0.85;
 }
 
 
-/* ================================
+/* ==========================================
    SOBRE
-================================ */
+========================================== */
 
 .about {
     padding: 30px 9% 90px;
@@ -610,9 +638,9 @@ a {
 
     grid-template-columns: 280px 1fr;
 
-    align-items: center;
-
     gap: 50px;
+
+    align-items: center;
 }
 
 .about-icon {
@@ -620,12 +648,14 @@ a {
     height: 260px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     border-radius: 50%;
 
-    background-color: #f8d9c7;
+    background: #f8d9c7;
 
     font-size: 100px;
 }
@@ -639,9 +669,9 @@ a {
 }
 
 
-/* ================================
-   RODAPÉ
-================================ */
+/* ==========================================
+   FOOTER
+========================================== */
 
 footer {
     padding: 35px 9%;
@@ -652,9 +682,9 @@ footer {
 
     justify-content: space-between;
 
-    background-color: #263c2d;
+    background: #263c2d;
 
-    color: #ffffff;
+    color: white;
 }
 
 footer p {
@@ -662,26 +692,30 @@ footer p {
 }
 
 
-/* ================================
+/* ==========================================
    MODAL
-================================ */
+========================================== */
 
 .modal-background {
+    display: none;
+
     position: fixed;
 
     inset: 0;
 
-    z-index: 100;
+    z-index: 1000;
 
     padding: 20px;
-
-    display: flex;
 
     align-items: center;
 
     justify-content: center;
 
-    background-color: rgba(25, 35, 29, 0.65);
+    background: rgba(25, 35, 29, 0.7);
+}
+
+.modal-background.open {
+    display: flex;
 }
 
 .modal {
@@ -693,9 +727,24 @@ footer p {
 
     position: relative;
 
-    background-color: #fffaf2;
-
     border-radius: 25px;
+
+    background: #fffaf2;
+
+    animation: abrirModal 0.2s ease;
+}
+
+@keyframes abrirModal {
+
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .close {
@@ -713,15 +762,9 @@ footer p {
 
     border-radius: 50%;
 
-    background-color: #ffffff;
+    background: white;
 
     font-size: 25px;
-
-    line-height: 1;
-}
-
-.close:hover {
-    background-color: #eeeeee;
 }
 
 .modal-image {
@@ -738,11 +781,11 @@ footer p {
 }
 
 .modal-content h2 {
+    margin: 12px 0;
+
     font-family: Georgia, "Times New Roman", serif;
 
     font-size: 40px;
-
-    margin: 12px 0;
 }
 
 .modal-content > p {
@@ -751,61 +794,104 @@ footer p {
     line-height: 1.7;
 }
 
+
+/* ==========================================
+   INFORMAÇÕES
+========================================== */
+
 .information {
     display: flex;
 
-    gap: 20px;
+    gap: 15px;
 
     flex-wrap: wrap;
 
     margin: 20px 0;
+}
+
+.information span {
+    padding: 9px 13px;
+
+    border-radius: 20px;
+
+    background: #e6efe3;
 
     color: #365943;
+
+    font-size: 14px;
 
     font-weight: bold;
 }
 
-.recipe-details {
+
+/* ==========================================
+   SEÇÕES DA RECEITA
+========================================== */
+
+.recipe-sections {
     display: grid;
 
     grid-template-columns: 1fr 1fr;
 
-    gap: 40px;
+    gap: 20px;
 
-    border-top: 1px solid #e4ded3;
-
-    padding-top: 25px;
+    margin-top: 25px;
 }
 
-.recipe-details h3,
-.reviews h3 {
+.recipe-box {
+    padding: 22px;
+
+    border: 1px solid #e3ddd2;
+
+    border-radius: 18px;
+
+    background: white;
+}
+
+.recipe-box h3 {
     margin-bottom: 15px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 21px;
+
+    color: #365943;
 }
 
-.recipe-details ul,
-.recipe-details ol {
+.recipe-box ul,
+.recipe-box ol {
     padding-left: 20px;
 }
 
-.recipe-details li {
-    margin: 9px 0;
+.recipe-box li {
+    margin-bottom: 10px;
 
     color: #69746d;
 
-    line-height: 1.5;
+    line-height: 1.6;
+}
+
+.preparation {
+    grid-column: 1 / -1;
 }
 
 
-/* ================================
+/* ==========================================
    AVALIAÇÕES
-================================ */
+========================================== */
 
 .reviews {
-    border-top: 1px solid #e4ded3;
-
     margin-top: 30px;
 
     padding-top: 25px;
+
+    border-top: 1px solid #e4ded3;
+}
+
+.reviews h3 {
+    margin-bottom: 15px;
+
+    color: #365943;
 }
 
 .stars {
@@ -817,49 +903,43 @@ footer p {
 .stars button {
     border: none;
 
-    background-color: transparent;
-
-    font-size: 34px;
-
-    line-height: 1;
+    background: transparent;
 
     color: #c9c9c2;
+
+    font-size: 36px;
 
     transition: 0.15s;
 }
 
-.stars button:hover {
-    color: #e0ad35;
-
-    transform: scale(1.1);
-}
-
+.stars button:hover,
 .stars button.selected {
     color: #e0ad35;
+
+    transform: scale(1.08);
 }
 
 #textoAvaliacao {
+    margin: 8px 0 25px;
+
     color: #727c75;
 
-    font-size: 13px;
-
-    margin: 8px 0 25px;
+    font-size: 14px;
 }
 
 
-/* ================================
-   COMENTÁRIOS
-================================ */
+/* ==========================================
+   FORMULÁRIO DE COMENTÁRIO
+========================================== */
 
 #formComentario {
     display: grid;
 
-    grid-template-columns: 150px 1fr auto;
-
     gap: 10px;
 }
 
-#formComentario input {
+#formComentario input,
+#formComentario textarea {
     width: 100%;
 
     padding: 12px;
@@ -870,12 +950,20 @@ footer p {
 
     outline: none;
 
-    background-color: #ffffff;
+    background: white;
+
+    resize: vertical;
 }
 
-#formComentario input:focus {
+#formComentario input:focus,
+#formComentario textarea:focus {
     border-color: #557b62;
 }
+
+
+/* ==========================================
+   COMENTÁRIOS
+========================================== */
 
 .comments {
     display: flex;
@@ -884,17 +972,17 @@ footer p {
 
     gap: 10px;
 
-    margin-top: 18px;
+    margin-top: 20px;
 }
 
 .comment {
-    padding: 14px;
+    padding: 15px;
 
     border: 1px solid #e8e3da;
 
     border-radius: 14px;
 
-    background-color: #ffffff;
+    background: white;
 }
 
 .comment strong {
@@ -902,17 +990,17 @@ footer p {
 }
 
 .comment p {
-    color: #707a73;
-
     margin-top: 5px;
+
+    color: #707a73;
 }
 
 
-/* ================================
+/* ==========================================
    RESPONSIVIDADE
-================================ */
+========================================== */
 
-@media (max-width: 900px) {
+@media (max-width: 950px) {
 
     .hero {
         grid-template-columns: 1fr;
@@ -935,7 +1023,9 @@ footer p {
 }
 
 
-/* TABLETS E CELULARES */
+/* ==========================================
+   CELULAR
+========================================== */
 
 @media (max-width: 650px) {
 
@@ -943,7 +1033,7 @@ footer p {
         padding: 15px 20px;
     }
 
-    .header nav {
+    .menu {
         display: none;
     }
 
@@ -957,23 +1047,18 @@ footer p {
 
     .hero {
         padding-top: 50px;
-        padding-bottom: 50px;
     }
 
     .hero h1 {
-        font-size: 48px;
+        font-size: 45px;
     }
 
     .hero-image {
         height: 330px;
     }
 
-    .hero-image img {
-        width: 280px;
-        height: 280px;
-    }
-
-    .hero-image .circle {
+    .hero-image img,
+    .circle {
         width: 280px;
         height: 280px;
     }
@@ -982,11 +1067,19 @@ footer p {
         width: 80px;
         height: 80px;
 
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .recipe-grid {
         grid-template-columns: 1fr;
+    }
+
+    .recipe-sections {
+        grid-template-columns: 1fr;
+    }
+
+    .preparation {
+        grid-column: auto;
     }
 
     .about {
@@ -997,64 +1090,13 @@ footer p {
         width: 200px;
         height: 200px;
 
-        font-size: 70px;
-
         margin: auto;
+
+        font-size: 70px;
     }
 
     .tip {
         margin: 40px 20px;
-
-        align-items: flex-start;
-    }
-
-    .recipe-details {
-        grid-template-columns: 1fr;
-    }
-
-    #formComentario {
-        grid-template-columns: 1fr;
-    }
-
-    footer {
-        padding: 30px 20px;
-
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        gap: 15px;
-    }
-
-}
-
-
-/* CELULARES PEQUENOS */
-
-@media (max-width: 420px) {
-
-    .header {
-        min-height: 65px;
-    }
-
-    .logo {
-        font-size: 17px;
-    }
-
-    .favorite-button {
-        padding: 8px 11px;
-
-        font-size: 12px;
-    }
-
-    .hero h1 {
-        font-size: 40px;
-    }
-
-    .categories h2,
-    .recipes h2,
-    .about h2 {
-        font-size: 32px;
     }
 
     .modal-content {
@@ -1067,6 +1109,16 @@ footer p {
 
     .modal-image {
         height: 220px;
+    }
+
+    footer {
+        padding: 30px 20px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
     }
 
 }
